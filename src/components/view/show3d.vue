@@ -105,12 +105,13 @@ export default {
 
             // 平行光
             const light = (this.light = new DirectionalLight());
-            light.position.set(0, 20, 20);
+            light.position.set(0, 200, 200);
 
             // 点光
-            // const pointLight = new THREE.PointLight(0xffffff, 0.8);
-            // pointLight.position.set(0, 20, 20)
-            this.camera.add(light);
+            const pointLight = new THREE.PointLight(0xfefefe, 0.8);
+            pointLight.position.set(0, 700, 120)
+            // pointLight.distance = 50
+            this.camera.add(pointLight);
         },
         // 材质模型加载
         initMtl() {
@@ -127,14 +128,14 @@ export default {
 
             // THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
             const mtlLoader = new MTLLoader();
-            mtlLoader.setPath("static/obj/obj001/");
-            mtlLoader.load("Box001.mtl", function (materials) {
+            mtlLoader.setPath("static/obj/markobj/");
+            mtlLoader.load("plate.mtl", function (materials) {
                 materials.preload();
                 var objLoader = new THREE.OBJLoader();
                 objLoader.setMaterials(materials);
-                objLoader.setPath("static/obj/obj001/");
+                objLoader.setPath("static/obj/markobj/");
                 objLoader.load(
-                    "Box001.obj",
+                    "plate.obj",
                     function (object) {
                         // object.position.y = -0.5;
                         // object.position.y = - 95;

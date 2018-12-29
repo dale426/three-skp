@@ -10,7 +10,7 @@ export default {
     name: "App",
     data() {
         return {
-            effect: "next", // 用于切换过渡动画
+            effect: "next"
         };
     }
 };
