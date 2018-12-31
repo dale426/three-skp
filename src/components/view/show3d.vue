@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="first-page">
         <div class="mode3d-title">3D展示</div>
         <div id="model3d" class="model3d"></div>
         <Menu></Menu>
@@ -183,5 +183,9 @@ export default {
 }
 .model3d{
     height: 400px;
+}
+.first-page{
+    background: url('../../assets/bac003.png');
+    background-size: cover;
 }
 </style>
