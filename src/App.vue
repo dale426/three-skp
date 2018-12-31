@@ -25,6 +25,9 @@ export default {
   color: #2c3e50;
   background: #c0c0c0;
 }
+ ul, li, ol{
+   list-style: none;
+  }
 body {
   height: 100%;
 }

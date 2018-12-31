@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="mode3d-title">3D展示</div>
-        <div id="model3d"></div>
-
+        <div id="model3d" class="model3d"></div>
+        <Menu></Menu>
     </div>
 </template>
 <script>
@@ -10,6 +10,7 @@
 import initOrbitControls from "three-orbit-controls";
 import * as OBJLoader from "three-obj-loader";
 import MTLLoader from "three-mtl-loader";
+import Menu from '@/components/commonComponents/Menu';
 const THREE = require("three");
 
 OBJLoader(THREE);
@@ -47,9 +48,10 @@ export default {
     data() {
         return {};
     },
+    components: {Menu},
     mounted() {
         let reFontSize = parseInt(window.document.getElementsByTagName('html')[0].style.fontSize.split('px')[0]) || 0
-        let realHeight = 60 / 41.4 * reFontSize
+        let realHeight = 300 / 41.4 * reFontSize
         const defaultOptions = {
             width: window.innerWidth,
             height: window.innerHeight - realHeight,
@@ -73,7 +75,9 @@ export default {
         initThreejs() {
             const renderer = (this.renderer = new WebGLRenderer({ alpha: true, antialias: true }));
             let el = document.getElementById("model3d");
+            // renderer.setSize(this.options.width, this.options.height);
             renderer.setSize(this.options.width, this.options.height);
+
             renderer.setPixelRatio(this.options.pixelRatio);
             el.appendChild && el.appendChild(renderer.domElement);
             //   this.options.element.appendChild &&
@@ -82,7 +86,7 @@ export default {
         // 初始化场景
         initSence() {
             const scene = (this.scene = new Scene());
-            scene.background = new Color(0xffffff);
+            // scene.background = new Color(0xffffff);
         },
         // 初始化相机
         initCamera() {
@@ -129,13 +133,13 @@ export default {
             // THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
             const mtlLoader = new MTLLoader();
             mtlLoader.setPath("static/obj/markobj/");
-            mtlLoader.load("plate.mtl", function (materials) {
+            mtlLoader.load("MTMK.mtl", function (materials) {
                 materials.preload();
                 var objLoader = new THREE.OBJLoader();
                 objLoader.setMaterials(materials);
                 objLoader.setPath("static/obj/markobj/");
                 objLoader.load(
-                    "plate.obj",
+                    "MTMK.obj",
                     function (object) {
                         // object.position.y = -0.5;
                         // object.position.y = - 95;
@@ -176,5 +180,8 @@ export default {
 <style lang="less">
 .mode3d-title{
     height: 60px;
+}
+.model3d{
+    height: 400px;
 }
 </style>
