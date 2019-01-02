@@ -3,24 +3,35 @@
         <div class="linebox">
             <div class="box-3d">
                 <img class="logo-text" src="../../assets/page1-02.png" alt="logo">
-                <div class="mode-title">
-                    <p>赛可平</p>
-                    <p>吗替麦考酚酯分散片</p>
-                </div>
-                <div id="model3d" class="model3d"></div>
-
-                <div class="open-item">
-                    <div class="right-angle"></div>
-                    <div>OPEN >></div>
-                    <div class="right-angle"></div>
+                <!-- <div class=""> -->
+                    <div class="mode-title">
+                        <p>赛可平<span class="circle-r">®</span></p>
+                        <p>吗替麦考酚酯分散片</p>
+                    </div>
+                    <div id="model3d" class="model3d"></div>
+                    <div class="open-item">
+                        <div class="right-angle"></div>
+                        <div>OPEN
+                            <svg class="open-icon">
+                                <polyline
+                                    points="6 15 12 9 18 15"
+                                    stroke="#5defe0"
+                                    stroke-width="2"
+                                ></polyline>
+                                <polyline
+                                    points="6 20 12 14 18 20"
+                                    stroke="#5defe0"
+                                    stroke-width="2"
+                                ></polyline>
+                            </svg>
+                        </div>
+                        <div class="right-angle"></div>
+                    <!-- </div> -->
                 </div>
             </div>
         </div>
-        <!-- <div class="mode3d-title"></div> -->
-
         <div class="menu">
             <Menu showRow></Menu>
-            <div></div>
         </div>
     </div>
 </template>
@@ -69,11 +80,12 @@ export default {
     },
     components: {Menu},
     mounted() {
-        let reFontSize = parseInt(window.document.getElementsByTagName('html')[0].style.fontSize.split('px')[0]) || 0
-        let realHeight = 300 / 41.4 * reFontSize
+        // let reFontSize = parseInt(window.document.getElementsByTagName('html')[0].style.fontSize.split('px')[0]) || 0
+        // let realHeight = 300 / 41.4 * reFontSize
         const defaultOptions = {
             width: window.innerWidth - 40,
-            height: window.innerHeight - realHeight,
+            // height: window.innerHeight - realHeight,
+            height: window.innerWidth - 40,
             element: document.body,
             pixelRatio: window.devicePixelRatio,
             debugMode: false
@@ -207,14 +219,13 @@ export default {
 .model3d{
     // height: 400px;
     background: url('../../assets/page1-03.png') center no-repeat;
-    background-size: 350px 350px;
+    background-size: 100%;
 }
 .first-page{
     height: 100%;
     position: relative;
     background: url('../../assets/bac001.png');
     background-size: cover;
-    
     .linebox{
         position: absolute;
         height: 100%;
@@ -232,6 +243,9 @@ export default {
         position: relative;
         width: 100%;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         background: url('../../assets/page1-01.png') center no-repeat;
         background-size: 100% 100%;
         .logo-text{
@@ -243,11 +257,24 @@ export default {
             z-index: 2
         }
         .mode-title{
-            padding: 20px 0;
+            padding-top: 60px;
+            color: #5defe0;
             p{
                 text-align: center;
                 font-size: 28px;
             }
+            .circle-r{
+                font-size: 12px;
+                display: inline-block;
+                vertical-align: top;
+                padding-left: 4px;
+            }
+        }
+        .open-icon{
+            width: 24px;
+            height: 24px;
+            display: inline-block;
+            padding-top: 4px;
         }
     }
 
@@ -255,7 +282,7 @@ export default {
         display: flex;
         color: #5defe0;
         justify-content: space-between;
-        padding: 0 26px;
+        padding: 0 26px 30px;
         font-size: 20px;
         width: 100%;
         .right-angle{

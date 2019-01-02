@@ -6,10 +6,21 @@
                 <li class="menu-list-item" v-for="item in menuList" :key="item.id">{{item.name}}</li>
             </ul>
         </div>
-        <svg width="36" height="36">
-            <circle class="right-row" cx="14"  cy="14" r="28"/>
+        <svg v-if="showRow" width="36" height="36">
+            <circle
+                cx="18"
+                cy="18"
+                r="16"
+                stroke="#5defe0"
+                stroke-width="2"
+                fill="none"
+                />
+            <polyline
+                points="14 10 26 18 14 26"
+                stroke="#5defe0"
+                stroke-width="2"
+            ></polyline>
         </svg>
-        <img v-if="showRow" width="36" height="36" src="../../assets/menu.png" alt="#">
     </div>
 </template>
 <script>
@@ -72,13 +83,8 @@ export default {
         position: relative;
         float: left;
     }
-    img{
+    svg{
         float: right;
-    }
-    .right-row{
-        fill: none;
-        stroke: #5defe0;
-        stroke-width: 2px;
     }
 }
 .menu-title {
