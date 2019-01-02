@@ -1,14 +1,26 @@
 <template>
-    <div class="wrap-menu">
-        <div class="menu-title" @click="showMenu=!showMenu">导航 Guide <div class="triganle" :class="showMenu ? 'close-menu' : ''"></div></div>
-        <ul v-if="showMenu" class="menu-list">
-            <li class="menu-list-item" v-for="item in menuList" :key="item.id">{{item.name}}</li>
-        </ul>
+    <div class="wrap-menu clearfix">
+        <div class="menu-item">
+            <div class="menu-title" @click="showMenu=!showMenu">导航 Guide <div class="triganle" :class="showMenu ? 'close-menu' : ''"></div></div>
+            <ul v-if="showMenu" class="menu-list">
+                <li class="menu-list-item" v-for="item in menuList" :key="item.id">{{item.name}}</li>
+            </ul>
+        </div>
+        <svg width="36" height="36">
+            <circle class="right-row" cx="14"  cy="14" r="28"/>
+        </svg>
+        <img v-if="showRow" width="36" height="36" src="../../assets/menu.png" alt="#">
     </div>
 </template>
 <script>
 export default {
     name: 'MenuComponents',
+    props: {
+        showRow: {
+            type: Boolean,
+            default: false
+        }
+    },
     data() {
         return {
             showMenu: false,
@@ -54,8 +66,20 @@ export default {
     margin-bottom: 6px;
 }
 .wrap-menu{
-    display: inline-block;
-    position: relative;
+    padding: 0 20px;
+    width: 100%;
+    .menu-item{
+        position: relative;
+        float: left;
+    }
+    img{
+        float: right;
+    }
+    .right-row{
+        fill: none;
+        stroke: #5defe0;
+        stroke-width: 2px;
+    }
 }
 .menu-title {
     position: relative;
@@ -69,6 +93,7 @@ export default {
         border-color: transparent #5defe0 transparent transparent;
         transform: rotate(90deg);
     }
+
     .close-menu{
         transform: rotate(270deg);
         margin: 0 0 -5px 5px;
