@@ -12,9 +12,24 @@ export default new Router({
             component: HelloWorld
         },
         {
-            path: '/show3d',
-            name: 'Show3d',
-            component: resolve => { require(['@/components/view/show3d.vue'], resolve) }
+            path: '/model-one',
+            name: 'model-one',
+            component: resolve => { require(['@/components/view/model-show/model-one.vue'], resolve) }
+        },
+        {
+            path: '/model-two',
+            name: 'model-two',
+            component: resolve => { require(['@/components/view/model-show/model-two.vue'], resolve) }
+        },
+        {
+            path: '/model-three',
+            name: 'model-three',
+            component: resolve => { require(['@/components/view/model-show/model-three.vue'], resolve) }
+        },
+        {
+            path: '/advance-one',
+            name: 'advance-one',
+            component: resolve => { require(['@/components/view/advantage/advance-one.vue'], resolve) }
         }
     ]
 })

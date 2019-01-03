@@ -2,7 +2,7 @@
     <div class="first-page">
         <div class="linebox">
             <div class="box-3d">
-                <img class="logo-text" src="../../assets/page1-02.png" alt="logo">
+                <img class="logo-text" src="../../../assets/page1-02.png" alt="logo">
                 <!-- <div class=""> -->
                     <div class="mode-title">
                         <p>赛可平<span class="circle-r">®</span></p>
@@ -11,22 +11,13 @@
                     <div id="model3d" class="model3d"></div>
                     <div class="open-item">
                         <div class="right-angle"></div>
-                        <div>OPEN
-                            <svg class="open-icon">
-                                <polyline
-                                    points="6 15 12 9 18 15"
-                                    stroke="#5defe0"
-                                    stroke-width="2"
-                                ></polyline>
-                                <polyline
-                                    points="6 20 12 14 18 20"
-                                    stroke="#5defe0"
-                                    stroke-width="2"
-                                ></polyline>
-                            </svg>
+                        <div @click="prePageHandler">
+                             <RowIcon style="padding-right:10px;" direct="left"></RowIcon>BACK
+                        </div>
+                        <div @click="nextPageHandler">
+                             OPEN<RowIcon style="padding-left:10px;" direct="right"></RowIcon>
                         </div>
                         <div class="right-angle"></div>
-                    <!-- </div> -->
                 </div>
             </div>
         </div>
@@ -41,6 +32,7 @@ import initOrbitControls from "three-orbit-controls";
 import * as OBJLoader from "three-obj-loader";
 import MTLLoader from "three-mtl-loader";
 import Menu from '@/components/commonComponents/Menu';
+import RowIcon from '@/components/commonComponents/RowIcon';
 const THREE = require("three");
 
 OBJLoader(THREE);
@@ -51,34 +43,15 @@ const {
     DirectionalLight,
     Color,
     Vector3
-    /* Raycaster,
-    TextureLoader,
-    MeshBasicMaterial,
-    BackSide,
-    Mesh,
-    CubeGeometry,
-    MeshFaceMaterial,
-    DoubleSide,
-    JSONLoader,
-    Group,
-    Geometry,
-    PointsMaterial,
-    AddEquation,
-    Points,
-    Vector2,
-    MeshLambertMaterial,
-    LensFlare,
-    AdditiveBlending,
-    ShaderMaterial */
 } = THREE;
 const OrbitControls = initOrbitControls(THREE);
 
 export default {
-    name: "Show3d",
+    name: "model-two",
     data() {
         return {};
     },
-    components: {Menu},
+    components: {Menu, RowIcon},
     mounted() {
         // let reFontSize = parseInt(window.document.getElementsByTagName('html')[0].style.fontSize.split('px')[0]) || 0
         // let realHeight = 300 / 41.4 * reFontSize
@@ -127,7 +100,7 @@ export default {
                 1,
                 10000
             ));
-            camera.position.set(-40, 50, 90);
+            camera.position.set(260, 200, 190);
             // camera.position.z = 250;
             camera.lookAt(new Vector3(0, 0, 0));
             this.scene.add(camera);
@@ -135,7 +108,7 @@ export default {
 
         initLight() {
             // 环境光
-            var ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+            var ambientLight = new THREE.AmbientLight(0xffffff, 1);
             this.scene.add(ambientLight);
 
             // 平行光
@@ -143,10 +116,10 @@ export default {
             light.position.set(50, 100, 200);
 
             // 点光
-            const pointLight = new THREE.PointLight(0xfefefe, 0.8);
-            pointLight.position.set(0, 200, 200)
+            const pointLight = new THREE.PointLight(0xe5e5e5, 0.8);
+            pointLight.position.set(100, 300, -340)
             // pointLight.distance = 50
-            this.camera.add(light);
+            this.camera.add(pointLight);
         },
         // 材质模型加载
         initMtl() {
@@ -164,13 +137,13 @@ export default {
             // THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
             const mtlLoader = new MTLLoader();
             mtlLoader.setPath("static/obj/markobj/");
-            mtlLoader.load("MTMK.mtl", function (materials) {
+            mtlLoader.load("plate.mtl", function (materials) {
                 materials.preload();
                 var objLoader = new THREE.OBJLoader();
                 objLoader.setMaterials(materials);
                 objLoader.setPath("static/obj/markobj/");
                 objLoader.load(
-                    "MTMK.obj",
+                    "plate.obj",
                     function (object) {
                         // object.position.y = -0.5;
                         // object.position.y = - 95;
@@ -195,8 +168,8 @@ export default {
             controls.enableDamping = true;
             controls.dampingFactor = 0.3;
             // 最大最小相机移动距离(景深相机)
-            controls.minDistance = 40;
-            controls.maxDistance = 120;
+            controls.minDistance = 180;
+            controls.maxDistance = 320;
         },
 
         animate() {
@@ -207,94 +180,16 @@ export default {
 
         render() {
             this.renderer.render(this.scene, this.camera);
+        },
+        prePageHandler() {
+            this.$router.push({path: 'model-one'});
+        },
+        nextPageHandler() {
+            this.$router.push({path: 'model-three'});
         }
     }
 };
 </script>
 <style lang="less">
-.mode3d-title{
-    height: 60px;
-    z-index: 999;
-}
-.model3d{
-    // height: 400px;
-    background: url('../../assets/page1-03.png') center no-repeat;
-    background-size: 100%;
-}
-.first-page{
-    height: 100%;
-    position: relative;
-    background: url('../../assets/bac001.png');
-    background-size: cover;
-    .linebox{
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        padding: 20px;
-        padding-bottom: 140px;
-    }
-    .menu{
-        position: absolute;
-        bottom: 60px;
-        display: block;
-        width: 100%;
-    }
-    .box-3d{
-        position: relative;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        background: url('../../assets/page1-01.png') center no-repeat;
-        background-size: 100% 100%;
-        .logo-text{
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 60px;
-            height: 20px;
-            z-index: 2
-        }
-        .mode-title{
-            padding-top: 60px;
-            color: #5defe0;
-            p{
-                text-align: center;
-                font-size: 28px;
-            }
-            .circle-r{
-                font-size: 12px;
-                display: inline-block;
-                vertical-align: top;
-                padding-left: 4px;
-            }
-        }
-        .open-icon{
-            width: 24px;
-            height: 24px;
-            display: inline-block;
-            padding-top: 4px;
-        }
-    }
-
-    .open-item{
-        display: flex;
-        color: #5defe0;
-        justify-content: space-between;
-        padding: 0 26px 30px;
-        font-size: 20px;
-        width: 100%;
-        .right-angle{
-            width: 24px;
-            height: 24px;
-            border-left: 3px solid #5defe0;
-            border-bottom: 3px solid #5defe0;
-        }
-        .right-angle:last-child{
-            border-right: 3px solid #5defe0;
-            border-left: none;
-        }
-    }
-}
+    @import './model.less';
 </style>
