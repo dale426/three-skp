@@ -40,6 +40,11 @@ export default new Router({
             path: '/advance-three',
             name: 'advance-three',
             component: resolve => { require(['@/components/view/advantage/advance-three.vue'], resolve) }
+        },
+        {
+            path: '/advance-certificate',
+            name: 'advance-certificate',
+            component: resolve => { require(['@/components/view/advantage/advance-certificate.vue'], resolve) }
         }
     ]
 })
