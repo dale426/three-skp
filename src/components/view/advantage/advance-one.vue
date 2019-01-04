@@ -1,6 +1,6 @@
 <template>
     <div class="advance-one">
-        <div class="advance-one-wrap">
+        <div class="advance-content">
             <AdvanceTitle></AdvanceTitle>
             <div class="advace-describe">
                 <p>赛可平<span class="circle-r">®</span></p>
@@ -38,7 +38,7 @@ export default {
         width: 100%;
         background: url('../../../assets/advance-001.png') center no-repeat;
         background-size: cover;
-        .advance-one-wrap{
+        .advance-content{
             overflow-y: hidden;
             display: flex;
             height: calc(100vh);
