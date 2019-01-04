@@ -7,6 +7,7 @@
                     <div class="mode-title">
                         <p>赛可平<span class="circle-r">®</span></p>
                         <p>吗替麦考酚酯分散片</p>
+                        <p class="madeinchaina">中/国/制/造&nbsp;&nbsp;&nbsp;&nbsp;国/际/品/质</p>
                     </div>
                     <div id="model3d" class="model3d"></div>
                     <div class="open-item">
@@ -56,9 +57,9 @@ export default {
         // let reFontSize = parseInt(window.document.getElementsByTagName('html')[0].style.fontSize.split('px')[0]) || 0
         // let realHeight = 300 / 41.4 * reFontSize
         const defaultOptions = {
-            width: window.innerWidth - 40,
+            width: window.innerWidth - 80,
             // height: window.innerHeight - realHeight,
-            height: window.innerWidth - 40,
+            height: window.innerWidth - 80,
             element: document.body,
             pixelRatio: window.devicePixelRatio,
             debugMode: false
@@ -119,7 +120,7 @@ export default {
             const pointLight = new THREE.PointLight(0xe5e5e5, 0.8);
             pointLight.position.set(100, 300, -340)
             // pointLight.distance = 50
-            this.camera.add(pointLight);
+            this.camera.add(light);
         },
         // 材质模型加载
         initMtl() {
