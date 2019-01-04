@@ -18,6 +18,7 @@
 import AdvanceTitle from './components/AdvaceTitle.vue';
 import Menu from '@/components/commonComponents/Menu';
 import advanceImg21 from '@/assets/advance-2-1.png';
+
 export default {
     name: 'advance-two',
     data() {
