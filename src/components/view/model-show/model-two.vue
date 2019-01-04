@@ -120,7 +120,7 @@ export default {
             const pointLight = new THREE.PointLight(0xe5e5e5, 0.8);
             pointLight.position.set(100, 300, -340)
             // pointLight.distance = 50
-            this.camera.add(light);
+            this.camera.add(pointLight);
         },
         // 材质模型加载
         initMtl() {
@@ -138,13 +138,13 @@ export default {
             // THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
             const mtlLoader = new MTLLoader();
             mtlLoader.setPath("static/obj/markobj/");
-            mtlLoader.load("plate.mtl", function (materials) {
+            mtlLoader.load("plate1.mtl", function (materials) {
                 materials.preload();
                 var objLoader = new THREE.OBJLoader();
                 objLoader.setMaterials(materials);
                 objLoader.setPath("static/obj/markobj/");
                 objLoader.load(
-                    "plate.obj",
+                    "plate1.obj",
                     function (object) {
                         // object.position.y = -0.5;
                         // object.position.y = - 95;
