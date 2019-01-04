@@ -2,6 +2,9 @@
     <div class="advance-two">
         <div class="advance-two-wrap">
             <AdvanceTitle></AdvanceTitle>
+            <div class="patent-title">
+                分散片制剂<span class="triangle"></span>
+            </div>
             <div class="wrap-img-list">
                 <img width="100%" :src="advanceImg21" alt="品质优势">
             </div>
@@ -14,7 +17,7 @@
 <script>
 import AdvanceTitle from './components/AdvaceTitle.vue';
 import Menu from '@/components/commonComponents/Menu';
-import advanceImg21 from '@/assets/advance-1-1.png';
+import advanceImg21 from '@/assets/advance-2-1.png';
 export default {
     name: 'advance-two',
     data() {
@@ -30,6 +33,7 @@ export default {
         width: 100%;
         background: url('../../../assets/advance-002.png') center no-repeat;
         background-size: cover;
+        color: #5defe0;
         .advance-two-wrap{
             overflow-y: hidden;
             display: flex;
@@ -43,11 +47,26 @@ export default {
             display: flex;
             align-items: center;
         }
+        .patent-title{
+            padding: 40px 0;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+        }
         .menu{
             position: absolute;
             bottom: 60px;
             display: block;
             width: 100%;
+        }
+        .triangle{
+            width: 0;
+            height: 0;
+            display: inline-block;
+            border-width: 6px;
+            border-color: transparent transparent transparent #5defe0;
+            border-style: solid;
+            margin-left: 12px;
         }
     }
 </style>
