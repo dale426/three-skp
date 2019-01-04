@@ -1,0 +1,55 @@
+<template>
+        <div class="advace-c-title">
+            <div class="advance-text">品质优势</div>
+            <img height="32" :src="advantageLogo" alt="赛可平">
+        </div>
+</template>
+<script>
+import advantageLogo from '@/assets/advantage-logo.png'
+export default {
+    name: 'advanceTitle',
+    data() {
+        return {
+            advantageLogo
+        }
+    }
+}
+</script>
+<style lang="less">
+    .advace-c-title{
+        color: #5defe0;
+        font-size: 20px;
+        font-weight: bold;
+        position: relative;
+        letter-spacing: 2px;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        .advance-text{
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin-bottom: 6px;
+            &::before{
+                content: '';
+                width: 4px;
+                height: 20px;
+                background: #5defe0;
+                margin-right: 8px;
+            }
+            &::after{
+                content: 'Quality Advantage';
+                position: absolute;
+                display: inline-block;
+                white-space: nowrap;
+                margin-top: 24px;
+                left: 12px;
+                height: 20px;
+                font-size: 14px;
+                font-weight: 100;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+</style>

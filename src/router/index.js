@@ -30,6 +30,11 @@ export default new Router({
             path: '/advance-one',
             name: 'advance-one',
             component: resolve => { require(['@/components/view/advantage/advance-one.vue'], resolve) }
+        },
+        {
+            path: '/advance-two',
+            name: 'advance-two',
+            component: resolve => { require(['@/components/view/advantage/advance-two.vue'], resolve) }
         }
     ]
 })
