@@ -10,7 +10,6 @@
                 <p>从源头控制品质</p>
             </div>
             <div class="wrap-img-list">
-                <!-- <img width="100%" :src="advanceImg31" alt="品质优势"> -->
             </div>
         </div>
         <div class="menu">
@@ -21,13 +20,10 @@
 <script>
 import AdvanceTitle from './components/AdvaceTitle.vue';
 import Menu from '@/components/commonComponents/Menu';
-import advanceImg31 from '@/assets/advance-3-1.png';
 export default {
     name: 'advance-three',
     data() {
-        return {
-            advanceImg31
-        }
+        return {}
     },
     components: {AdvanceTitle, Menu}
 }

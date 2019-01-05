@@ -1,12 +1,15 @@
 <template>
-    <div class="advance-two">
+    <div class="advance-five">
         <div class="advance-content">
             <AdvanceTitle></AdvanceTitle>
             <div class="patent-title">
                 分散片制剂<span class="triangle"></span>
             </div>
+
             <div class="wrap-img-list">
+                <p class="img-remark-title">吗替麦考酚酯平均血板浓度——时间线形图</p>
                 <img width="100%" :src="advanceImg21" alt="品质优势">
+                <p class="patent-content">赛可平与原研产品生物等效</p>
             </div>
         </div>
         <div class="menu">
@@ -20,7 +23,7 @@ import Menu from '@/components/commonComponents/Menu';
 import advanceImg21 from '@/assets/advance-2-1.png';
 
 export default {
-    name: 'advance-two',
+    name: 'advance-five',
     data() {
         return {
             advanceImg21
@@ -30,7 +33,7 @@ export default {
 }
 </script>
 <style lang="less">
-    .advance-two{
+    .advance-five{
         width: 100%;
         background: url('../../../assets/advance-002.png') center no-repeat;
         background-size: cover;
@@ -46,13 +49,26 @@ export default {
         .wrap-img-list{
             flex-grow: 1;
             display: flex;
+            flex-direction: column;
             align-items: center;
         }
         .patent-title{
-            padding: 40px 0;
+            padding: 20px 0;
             font-size: 20px;
             font-weight: bold;
             text-align: left;
+        }
+        .img-remark-title{
+            font-size: 14px;
+            padding: 20px 0;
+        }
+        .patent-content{
+            font-size: 20px;
+            color: #5defe0;
+            text-align: left;
+            padding: 15px 0 40px;
+            line-height: 1.5;
+            align-self: left;
         }
         .menu{
             position: absolute;

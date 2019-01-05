@@ -1,9 +1,13 @@
 <template>
-    <div class="advance-two">
+    <div class="advance-four">
         <div class="advance-content">
             <AdvanceTitle></AdvanceTitle>
             <div class="patent-title">
                 分散片制剂<span class="triangle"></span>
+            </div>
+            <div class="patent-content">
+                <p>压痕片工艺</p>
+                <p>易于个体化剂量调整</p>
             </div>
             <div class="wrap-img-list">
                 <img width="100%" :src="advanceImg21" alt="品质优势">
@@ -20,7 +24,7 @@ import Menu from '@/components/commonComponents/Menu';
 import advanceImg21 from '@/assets/advance-2-1.png';
 
 export default {
-    name: 'advance-two',
+    name: 'advance-four',
     data() {
         return {
             advanceImg21
@@ -30,7 +34,7 @@ export default {
 }
 </script>
 <style lang="less">
-    .advance-two{
+    .advance-four{
         width: 100%;
         background: url('../../../assets/advance-002.png') center no-repeat;
         background-size: cover;
@@ -49,10 +53,19 @@ export default {
             align-items: center;
         }
         .patent-title{
-            padding: 40px 0;
+            padding: 20px 0;
             font-size: 20px;
             font-weight: bold;
             text-align: left;
+        }
+        .patent-content{
+            font-size: 20px;
+            color: #5defe0;
+            text-align: left;
+            padding: 15px 0;
+            p{
+                line-height: 1.5;
+            }
         }
         .menu{
             position: absolute;
