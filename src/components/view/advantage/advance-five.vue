@@ -63,12 +63,13 @@ export default {
             padding: 20px 0;
         }
         .patent-content{
+            display: flex;
             font-size: 20px;
             color: #5defe0;
             text-align: left;
-            padding: 15px 0 40px;
+            padding: 15px 0;
             line-height: 1.5;
-            align-self: left;
+            align-self: flex-start;
         }
         .menu{
             position: absolute;
