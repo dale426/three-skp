@@ -8,7 +8,7 @@
 
             <div class="wrap-img-list">
                 <p class="img-remark-title">吗替麦考酚酯平均血板浓度——时间线形图</p>
-                <img width="100%" :src="advanceImg21" alt="品质优势">
+                <img width="90%" :src="advanceImg21" alt="品质优势">
                 <p class="patent-content">赛可平与原研产品生物等效</p>
             </div>
         </div>

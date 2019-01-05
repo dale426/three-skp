@@ -56,5 +56,10 @@ export default new Router({
             name: 'advance-five',
             component: resolve => { require(['@/components/view/advantage/advance-five.vue'], resolve) }
         },
+        {
+            path: '/applicable-disease',
+            name: 'applicable-disease',
+            component: resolve => { require(['@/components/view/user-effect/ApplicableDisease.vue'], resolve) }
+        }
     ]
 })
