@@ -1,31 +1,39 @@
 <template>
     <div class="applicable-disease">
-        <div class="advance-content">
-            <AdvanceTitle></AdvanceTitle>
-            <div class="disease-content">
-                <div class="departments-list">
-                    <div>选择科室<div class="triganle"></div></div>
-                    <ul>
-                        <li
-                        class="departments-list-item"
-                        v-for="item in illList"
-                        :key="item.id"
-                        :class="currIndex === item.id ? 'active' : ''"
-                        @click="changeDepartmentsHandler(item.id)"
-                        > {{item.name}} </li>
-                    </ul>
-                </div>
-                <div class="humen-body">
-                    <div class="red-circle"></div>
+        <div class="office-menu">
+            <div class="advance-content">
+                <AdvanceTitle></AdvanceTitle>
+                <div class="disease-content">
+                    <div class="departments-list">
+                        <div>选择科室<div class="triganle"></div></div>
+                        <ul>
+                            <li
+                            class="departments-list-item"
+                            v-for="item in illList"
+                            :key="item.id"
+                            :class="currIndex === item.id ? 'active' : ''"
+                            @click="changeDepartmentsHandler(item.id)"
+                            > {{item.name}} </li>
+                        </ul>
+                    </div>
+                    <div class="humen-body">
+                        <!-- 风湿免疫科 -->
+                        <div class="wrap-circle fsmyk">
+                            <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
+                            <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
+                            <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
+                        </div>
 
-                    <img src=".././../../assets/red-circle.png" alt="" width="300px;" style="opacity: 0.8">
-
-                    <img width="100%" height="100%" :src="simpleBody" alt="人体">
+                        <img width="100%" height="100%" :src="simpleBody" alt="人体">
+                    </div>
                 </div>
             </div>
+            <div class="menu">
+                <Menu></Menu>
+            </div>
         </div>
-        <div class="menu">
-            <Menu></Menu>
+        <div class="detail-components-wrap">
+            <FsmykComponent></FsmykComponent>
         </div>
     </div>
 </template>
@@ -33,7 +41,7 @@
 import AdvanceTitle from '../advantage/components/AdvaceTitle.vue';
 import Menu from '@/components/commonComponents/Menu';
 import simpleBody from '@/assets/simple-body.png';
-
+import FsmykComponent from './components/FsmykComponent.vue'
 export default {
     name: 'applicable-disease',
     data() {
@@ -65,7 +73,7 @@ export default {
                 }]
         }
     },
-    components: {AdvanceTitle, Menu},
+    components: {AdvanceTitle, Menu, FsmykComponent},
     methods: {
         changeDepartmentsHandler(id) {
             this.currIndex = id
@@ -107,15 +115,38 @@ export default {
             border: 1px solid #5defe0;
         }
         .humen-body{
+            position: relative;
             width: 210px;
             height: 510px;
-            position: relative;
+            .fsmyk {
+                .red-circle:nth-child(1) {
+                    top: 136px;
+                    left: 76px;
+                }
+                .red-circle:nth-child(2) {
+                    top: 214px;
+                    left: 114px;
+                }
+                .red-circle:nth-child(3) {
+                    top: 290px;
+                    left: 70px;
+                }
+            }
+        }
+        .wrap-circle{
+            position: absolute;
+            width: 100%;
+            height: 100%;
             .red-circle{
-                width: 200px;
-                height: 200px;
-                border-radius: 50%;
-                background: radial-gradient(circle, red, transparent);
-                opacity: 0.9;
+                position: absolute;
+                width: 30px;
+                height: 30px;
+                animation: redGlint 1.5s infinite;
+                animation-direction: alternate;
+            }
+            @keyframes redGlint {
+                from {opacity: 0;}
+                to {opacity: 0.8;}
             }
         }
         .menu{
@@ -133,6 +164,16 @@ export default {
             border-width: 6px;
             border-style: solid;
             border-color: #5defe0 transparent transparent transparent;
+        }
+        .detail-components-wrap{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .office-menu{
+            opacity: 0.1;
         }
     }
 </style>

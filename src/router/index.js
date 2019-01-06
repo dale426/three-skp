@@ -60,6 +60,11 @@ export default new Router({
             path: '/applicable-disease',
             name: 'applicable-disease',
             component: resolve => { require(['@/components/view/user-effect/ApplicableDisease.vue'], resolve) }
+        },
+        {
+            path: '/fsmyk',
+            name: 'fsmyk',
+            component: resolve => { require(['@/components/view/user-effect/components/FsmykComponent.vue'], resolve) }
         }
     ]
 })
