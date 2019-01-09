@@ -8,7 +8,7 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'model-one',
+            name: 'model-one-01',
             component: resolve => { require(['@/components/view/model-show/model-one.vue'], resolve) }
         },
         {

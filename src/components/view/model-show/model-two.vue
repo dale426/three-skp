@@ -42,7 +42,6 @@ const {
     Scene,
     PerspectiveCamera,
     DirectionalLight,
-    Color,
     Vector3
 } = THREE;
 const OrbitControls = initOrbitControls(THREE);
@@ -90,7 +89,7 @@ export default {
         },
         // 初始化场景
         initSence() {
-            const scene = (this.scene = new Scene());
+            this.scene = new Scene();
             // scene.background = new Color(0xffffff);
         },
         // 初始化相机
