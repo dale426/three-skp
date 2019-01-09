@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="menu">
-            <Menu showRow></Menu>
+            <Menu showRow @next-page="nextAdvanceHandler()"></Menu>
         </div>
     </div>
 </template>
@@ -30,7 +30,12 @@ export default {
             advanceImg11
         }
     },
-    components: {AdvanceTitle, Menu}
+    components: {AdvanceTitle, Menu},
+    methods: {
+        nextAdvanceHandler() {
+            this.$router.push({path: 'advance-two'})
+        }
+    }
 }
 </script>
 <style lang="less">
@@ -52,8 +57,10 @@ export default {
         .wrap-img-list{
             text-align: left;
             padding-bottom: 20px;
+            flex-grow: 3;
         }
         .advace-describe{
+            flex-grow: 3;
             font-size: 20px;
             color: #5defe0;
             text-align: left;

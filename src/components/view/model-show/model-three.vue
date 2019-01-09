@@ -11,7 +11,7 @@
                     <div id="model3d" class="model3d"></div>
                     <div class="open-item">
                         <div class="right-angle"></div>
-                        <div @click="prePageHandler">
+                        <div @click="preModelHandler">
                             <RowIcon style="padding-left:10px;" direct="left"></RowIcon>
                             BACK
                         </div>
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="menu">
-            <Menu showRow></Menu>
+            <Menu showRow @next-page="nextMenuHandler"></Menu>
         </div>
     </div>
 </template>
@@ -180,8 +180,11 @@ export default {
             this.renderer.render(this.scene, this.camera);
         },
 
-        prePageHandler() {
+        preModelHandler() {
             this.$router.push({path: 'model-two'})
+        },
+        nextMenuHandler() {
+            this.$router.push({path: 'advance-one'})
         }
     }
 };

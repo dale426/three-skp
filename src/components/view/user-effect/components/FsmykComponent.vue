@@ -12,11 +12,14 @@
                 </div>
             </template>
             <template slot="body-img-content">
+                <section>
                     <img width="100%" height="100%" :src="simpleBody" alt="人体">
                     <div class="fsmyk-a-bodyimg">
-                        <img class="fsmyk-a-red-circle" :src="RedCircle" alt="">
-                        <span class="red-line"></span>
+                        <div class="fsmyk-a-circle-wrap">
+                            <img class="red-circle" :src="RedCircle" alt="">
+                        </div>
                     </div>
+                </section>
             </template>
         </CommonWrapShow>
     </div>
@@ -44,12 +47,16 @@ export default {
     text-align: left;
     p {
         font-size: 16px;
+        font-weight: bold;
     }
     & .a-recommend{
         margin-top: 30px;
-        font-size: 16px;
-        span {
+        font-size: 15px;
+        font-weight: 600;
+        p {
+            margin-top: 5px;
             font-size: 14px;
+            font-weight: 100;
         }
     }
 
@@ -61,22 +68,25 @@ export default {
     width: 100%;
     height: 100%;
 }
-.red-line{
-    position: absolute;
-    display: inline-block;
-    width: 70px;
-    height: 0.03rem;
-    background: red;
-    top: 190px;
-    left: 10px;
-}
-.fsmyk-a-red-circle{
+.fsmyk-a-circle-wrap{
     position: absolute;
     width: 30px;
     height: 30px;
-    opacity: 0.8;
     top: 176px;
     left: 65px;
-    display: block;
+    &::before{
+        content: '';
+        position: absolute;
+        display: inline-block;
+        width: 70px;
+        height: 0.03rem;
+        background: red;
+        top: 50%;
+        left: -60px;
+    }
+}
+.red-circle{
+    opacity: 0.8;
+    width: 100%;
 }
 </style>

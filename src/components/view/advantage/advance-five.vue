@@ -1,41 +1,46 @@
 <template>
     <div class="advance-five">
         <div class="advance-content">
-            <AdvanceTitle></AdvanceTitle>
+            <AdvanceTitle ></AdvanceTitle>
             <div class="patent-title">
                 分散片制剂<span class="triangle"></span>
             </div>
 
             <div class="wrap-img-list">
                 <p class="img-remark-title">吗替麦考酚酯平均血板浓度——时间线形图</p>
-                <img width="90%" :src="advanceImg21" alt="品质优势">
+                <img width="90%" :src="advanceImg51" alt="品质优势">
                 <p class="patent-content">赛可平与原研产品生物等效</p>
             </div>
         </div>
         <div class="menu">
-            <Menu showRow></Menu>
+            <Menu showRow @next-page="nextAdvanceHandler()"></Menu>
         </div>
     </div>
 </template>
 <script>
 import AdvanceTitle from './components/AdvaceTitle.vue';
 import Menu from '@/components/commonComponents/Menu';
-import advanceImg21 from '@/assets/advance-2-1.png';
+import advanceImg51 from '@/assets/advance-5-1.png';
 
 export default {
     name: 'advance-five',
     data() {
         return {
-            advanceImg21
+            advanceImg51
         }
     },
-    components: {AdvanceTitle, Menu}
+    components: {AdvanceTitle, Menu},
+    methods: {
+        nextAdvanceHandler() {
+            this.$router.push({path: 'applicable-disease'})
+        }
+    }
 }
 </script>
 <style lang="less">
     .advance-five{
         width: 100%;
-        background: url('../../../assets/advance-002.png') center no-repeat;
+        background: url('../../../assets/advance-bac-4.png') center no-repeat;
         background-size: cover;
         color: #5defe0;
         .advance-content{
@@ -47,16 +52,18 @@ export default {
             justify-content: space-between;
         }
         .wrap-img-list{
-            flex-grow: 1;
+            flex-grow: 3;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         .patent-title{
-            padding: 20px 0;
             font-size: 20px;
+            display: flex;
             font-weight: bold;
             text-align: left;
+            flex-grow: 2;
+            align-items: center;
         }
         .img-remark-title{
             font-size: 14px;

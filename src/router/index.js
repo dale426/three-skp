@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
 
@@ -8,8 +8,8 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'HelloWorld',
-            component: HelloWorld
+            name: 'model-one',
+            component: resolve => { require(['@/components/view/model-show/model-one.vue'], resolve) }
         },
         {
             path: '/model-one',
@@ -59,12 +59,14 @@ export default new Router({
         {
             path: '/applicable-disease',
             name: 'applicable-disease',
-            component: resolve => { require(['@/components/view/user-effect/ApplicableDisease.vue'], resolve) }
-        },
-        {
-            path: '/fsmyk',
-            name: 'fsmyk',
-            component: resolve => { require(['@/components/view/user-effect/components/FsmykComponent.vue'], resolve) }
+            component: resolve => { require(['@/components/view/user-effect/ApplicableDisease.vue'], resolve) },
+            children: [
+                {
+                    path: 'fsmyk',
+                    name: 'fsmyk',
+                    component: resolve => { require(['@/components/view/user-effect/components/FsmykComponent.vue'], resolve) }
+                }
+            ]
         }
     ]
 })

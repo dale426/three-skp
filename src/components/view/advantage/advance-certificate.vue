@@ -38,7 +38,7 @@
             </div>
         </div>
         <div class="menu">
-            <Menu showRow></Menu>
+            <Menu showRow @next-page="nextAdvanceHandler()"></Menu>
         </div>
     </div>
 </template>
@@ -59,6 +59,9 @@ export default {
     methods: {
         changeImg(num) {
             this.currMasterImg = num
+        },
+        nextAdvanceHandler() {
+            this.$router.push({path: 'advance-four'})
         }
     }
 }

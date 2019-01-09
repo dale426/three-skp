@@ -1,8 +1,8 @@
 <template>
     <div class="applicable-disease">
-        <div class="office-menu">
+        <div class="office-menu" :class="isMasterPage ? '' : 'office-menu-opacity'">
             <div class="advance-content">
-                <AdvanceTitle></AdvanceTitle>
+                <AdvanceTitle title="适用疾病" sub-title="Applicable disease"></AdvanceTitle>
                 <div class="disease-content">
                     <div class="departments-list">
                         <div>选择科室<div class="triganle"></div></div>
@@ -32,8 +32,8 @@
                 <Menu></Menu>
             </div>
         </div>
-        <div class="detail-components-wrap">
-            <FsmykComponent></FsmykComponent>
+        <div v-if="!isMasterPage" class="detail-components-wrap">
+            <router-view></router-view>
         </div>
     </div>
 </template>
@@ -41,11 +41,11 @@
 import AdvanceTitle from '../advantage/components/AdvaceTitle.vue';
 import Menu from '@/components/commonComponents/Menu';
 import simpleBody from '@/assets/simple-body.png';
-import FsmykComponent from './components/FsmykComponent.vue'
 export default {
     name: 'applicable-disease',
     data() {
         return {
+            isMasterPage: true,
             currIndex: null,
             simpleBody,
             illList: [
@@ -73,10 +73,24 @@ export default {
                 }]
         }
     },
-    components: {AdvanceTitle, Menu, FsmykComponent},
+    components: {AdvanceTitle, Menu},
     methods: {
         changeDepartmentsHandler(id) {
             this.currIndex = id
+        }
+    },
+    watch: {
+        $route: {
+            handler: function(val, oldVal) {
+                console.log(val);
+                if (val.name === 'applicable-disease') {
+                    this.isMasterPage = true
+                } else {
+                    this.isMasterPage = false
+                }
+            },
+            // 深度观察监听
+            deep: true
         }
     }
 }
@@ -172,7 +186,7 @@ export default {
             width: 100%;
             height: 100%;
         }
-        .office-menu{
+        .office-menu-opacity{
             opacity: 0.1;
         }
     }

@@ -15,7 +15,7 @@
                         <div @click="prePageHandler">
                              <RowIcon style="padding-right:10px;" direct="left"></RowIcon>BACK
                         </div>
-                        <div @click="nextPageHandler">
+                        <div @click="nextModelHandler">
                              OPEN<RowIcon style="padding-left:10px;" direct="right"></RowIcon>
                         </div>
                         <div class="right-angle"></div>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="menu">
-            <Menu showRow></Menu>
+            <Menu showRow @next-page="nextMenuHandler"></Menu>
         </div>
     </div>
 </template>
@@ -185,8 +185,11 @@ export default {
         prePageHandler() {
             this.$router.push({path: 'model-one'});
         },
-        nextPageHandler() {
+        nextModelHandler() {
             this.$router.push({path: 'model-three'});
+        },
+        nextMenuHandler() {
+            this.$router.push({path: 'advance-one'})
         }
     }
 };

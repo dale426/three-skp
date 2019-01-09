@@ -1,6 +1,9 @@
 <template>
         <div class="advace-c-title">
-            <div class="advance-text">品质优势</div>
+            <div class="advance-text">
+                <span>{{title}}</span>
+                <span>{{subTitle}}</span>
+            </div>
             <img height="32" :src="advantageLogo" alt="赛可平">
         </div>
 </template>
@@ -8,6 +11,16 @@
 import advantageLogo from '@/assets/advantage-logo.png'
 export default {
     name: 'advanceTitle',
+    props: {
+        title: {
+            type: String,
+            default: '品质优势'
+        },
+        subTitle: {
+            type: String,
+            default: 'Quality Advantage'
+        }
+    },
     data() {
         return {
             advantageLogo
@@ -28,27 +41,35 @@ export default {
         .advance-text{
             position: relative;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             margin-bottom: 6px;
+            flex-direction: column;
+            span:last-child{
+                font-size: 13px;
+                font-weight: 100;
+                letter-spacing: 1px;
+            }
             &::before{
                 content: '';
+                top: 4px;
+                left: -15px;
+                position: absolute;
                 width: 4px;
                 height: 20px;
                 background: #5defe0;
                 margin-right: 8px;
             }
-            &::after{
-                content: 'Quality Advantage';
-                position: absolute;
-                display: inline-block;
-                white-space: nowrap;
-                margin-top: 24px;
-                left: 12px;
-                height: 20px;
-                font-size: 14px;
-                font-weight: 100;
-                letter-spacing: 1px;
-            }
+            // .subTitle{
+            //     // position: absolute;
+            //     display: inline-block;
+            //     white-space: nowrap;
+            //     margin-top: 24px;
+            //     left: 12px;
+            //     height: 20px;
+            //     font-size: 13px;
+            //     font-weight: 100;
+            //     letter-spacing: 1px;
+            // }
         }
     }
 

@@ -10,27 +10,32 @@
                 <p>易于个体化剂量调整</p>
             </div>
             <div class="wrap-img-list">
-                <img width="100%" :src="advanceImg21" alt="品质优势">
+                <img width="100%" :src="advanceImg41" alt="品质优势">
             </div>
         </div>
         <div class="menu">
-            <Menu showRow></Menu>
+            <Menu showRow @next-page="nextAdvanceHandler()"></Menu>
         </div>
     </div>
 </template>
 <script>
 import AdvanceTitle from './components/AdvaceTitle.vue';
 import Menu from '@/components/commonComponents/Menu';
-import advanceImg21 from '@/assets/advance-2-1.png';
+import advanceImg41 from '@/assets/advance-4-1.gif';
 
 export default {
     name: 'advance-four',
     data() {
         return {
-            advanceImg21
+            advanceImg41
         }
     },
-    components: {AdvanceTitle, Menu}
+    components: {AdvanceTitle, Menu},
+    methods: {
+        nextAdvanceHandler() {
+            this.$router.push({path: 'advance-five'})
+        }
+    }
 }
 </script>
 <style lang="less">
@@ -48,12 +53,13 @@ export default {
             justify-content: space-between;
         }
         .wrap-img-list{
-            flex-grow: 1;
+            // flex-grow: 1;
             display: flex;
             align-items: center;
+            padding-bottom: 60px;
         }
         .patent-title{
-            padding: 20px 0;
+            // padding: 20px 0;
             font-size: 20px;
             font-weight: bold;
             text-align: left;
@@ -62,7 +68,7 @@ export default {
             font-size: 20px;
             color: #5defe0;
             text-align: left;
-            padding: 15px 0;
+            // padding-top: 15px;
             p{
                 line-height: 1.5;
             }

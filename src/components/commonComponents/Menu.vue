@@ -3,10 +3,10 @@
         <div class="menu-item">
             <div class="menu-title" @click="showMenu=!showMenu">导航 Guide <div class="triganle" :class="showMenu ? 'close-menu' : ''"></div></div>
             <ul v-if="showMenu" class="menu-list">
-                <li class="menu-list-item" v-for="item in menuList" :key="item.id">{{item.name}}</li>
+                <li class="menu-list-item" v-for="item in menuList" :key="item.id" @click="menuChangeHandler(item.route)">{{item.name}}</li>
             </ul>
         </div>
-        <svg v-if="showRow" width="36" height="36">
+        <svg v-if="showRow" width="36" height="36" @click="nextPageHandler">
             <circle
                 cx="18"
                 cy="18"
@@ -38,20 +38,28 @@ export default {
             menuList: [{
                 name: '产品图鉴',
                 id: 1,
-                route: ''
+                route: 'model-one'
             }, {
                 name: '品质优势',
                 id: 2,
-                route: ''
+                route: 'advance-one'
             }, {
                 name: '适用疾病',
                 id: 3,
-                route: ''
+                route: 'applicable-disease'
             }, {
                 name: '使用说明',
                 id: 4,
                 route: ''
             }]
+        }
+    },
+    methods: {
+        menuChangeHandler(route) {
+            this.$router.push({path: route});
+        },
+        nextPageHandler() {
+            this.$emit('next-page')
         }
     }
 }

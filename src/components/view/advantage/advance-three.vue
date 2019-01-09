@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="menu">
-            <Menu showRow></Menu>
+            <Menu showRow @next-page="nextAdvanceHandler()"></Menu>
         </div>
     </div>
 </template>
@@ -25,7 +25,12 @@ export default {
     data() {
         return {}
     },
-    components: {AdvanceTitle, Menu}
+    components: {AdvanceTitle, Menu},
+    methods: {
+        nextAdvanceHandler() {
+            this.$router.push({path: 'advance-certificate'})
+        }
+    }
 }
 </script>
 <style lang="less">

@@ -5,8 +5,11 @@ import App from './App'
 import router from './router'
 import 'lib-flexible/flexible.js'
 
+import FastClick from 'fastclick'
 import polyills from './utils/polyfills.js'
+
 polyills()
+FastClick.attach(document.body);
 
 Vue.config.productionTip = false
 require('./assets/css/common.css')
