@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# ╢╢╫╗╣днд╪Ч:02.06.2018 00:55:49
+# О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╪О©╫:02.06.2018 00:55:49
 
 newmtl blinn1SG
 	Ns 10.0000
@@ -12,5 +12,5 @@ newmtl blinn1SG
 	Kd 0.5880 0.5880 0.5880
 	Ks 0.0000 0.0000 0.0000
 	Ke 0.0000 0.0000 0.0000
-	map_Ka material\MTMK.jpg
-	map_Kd material\MTMK.jpg
+	map_Ka material/MTMK.jpg
+	map_Kd material/MTMK.jpg

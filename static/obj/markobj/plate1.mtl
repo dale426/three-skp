@@ -1,5 +1,5 @@
 # 3ds Max Wavefront OBJ Exporter v0.97b - (c)2007 guruware
-# ╢╢╫╗╣днд╪Ч:04.01.2019 23:17:48
+# О©╫О©╫О©╫О©╫О©╫О©╫О©╫д╪О©╫:04.01.2019 23:17:48
 
 newmtl 02___Default
 	Ns 10.0000
@@ -12,7 +12,7 @@ newmtl 02___Default
 	Kd 0.5882 0.5882 0.5882
 	Ks 0.7200 0.7200 0.7200
 	Ke 0.0000 0.0000 0.0000
-	map_Ka material\plate1.jpg
-	map_Kd material\plate1.jpg
-	map_bump material\plate_no.jpg
-	bump material\plate_no.jpg
+	map_Ka material/plate1.jpg
+	map_Kd material/plate1.jpg
+	map_bump material/plate_no.jpg
+	bump material/plate_no.jpg
