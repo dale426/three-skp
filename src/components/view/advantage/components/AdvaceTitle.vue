@@ -51,25 +51,14 @@ export default {
             }
             &::before{
                 content: '';
-                top: 4px;
+                top: 0;
                 left: -15px;
                 position: absolute;
                 width: 4px;
-                height: 20px;
+                height: 18px;
                 background: #5defe0;
                 margin-right: 8px;
             }
-            // .subTitle{
-            //     // position: absolute;
-            //     display: inline-block;
-            //     white-space: nowrap;
-            //     margin-top: 24px;
-            //     left: 12px;
-            //     height: 20px;
-            //     font-size: 13px;
-            //     font-weight: 100;
-            //     letter-spacing: 1px;
-            // }
         }
     }
 

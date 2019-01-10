@@ -5,7 +5,15 @@
                 <AdvanceTitle title="适用疾病" sub-title="Applicable disease"></AdvanceTitle>
                 <div class="disease-content">
                     <div class="departments-list">
-                        <div>选择科室<div class="triganle"></div></div>
+                        <div class="select-departs-item">选择科室
+                            <svg class="triganle" width="9" height="4">
+                                <polygon
+                                    points="0,6 5,0 10,6"
+                                    fill="#5defe0"
+                                    stroke="#5defe0"
+                                ></polygon>
+                            </svg>
+                        </div>
                         <ul>
                             <li
                             class="departments-list-item"
@@ -169,15 +177,14 @@ export default {
             display: block;
             width: 100%;
         }
-        .triganle{
-            display: inline-block;
-            transform: translateY(30%);
-            margin-left: 10px;
-            width: 0;
-            height: 0;
-            border-width: 6px;
-            border-style: solid;
-            border-color: #5defe0 transparent transparent transparent;
+        .select-departs-item{
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            .triganle{
+                margin-left: 2px;
+                transform: rotate(180deg);
+            }
         }
         .detail-components-wrap{
             position: absolute;

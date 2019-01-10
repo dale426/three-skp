@@ -1,7 +1,17 @@
 <template>
     <div class="wrap-menu clearfix">
         <div class="menu-item">
-            <div class="menu-title" @click="showMenu=!showMenu">导航 Guide <div class="triganle" :class="showMenu ? 'close-menu' : ''"></div></div>
+            <div class="menu-title" @click="showMenu=!showMenu">导航 Guide
+                <div class="menu-triganle" :class="showMenu ? 'close-menu' : ''">
+                    <svg width="10" height="6">
+                        <polygon
+                            points="0,6 5,0 10,6"
+                            fill="#5defe0"
+                            stroke="#5defe0"
+                        ></polygon>
+                    </svg>
+                </div>
+            </div>
             <ul v-if="showMenu" class="menu-list">
                 <li class="menu-list-item" v-for="item in menuList" :key="item.id" @click="menuChangeHandler(item.route)">{{item.name}}</li>
             </ul>
@@ -96,21 +106,15 @@ export default {
     }
 }
 .menu-title {
+    display: flex;
+    align-items: center;
     position: relative;
-    .triganle{
-        display: inline-block;
-        margin: 0 0 2px 5px;
-        width: 0;
-        height: 0;
-        border-width: 6px;
-        border-style: solid;
-        border-color: transparent #5defe0 transparent transparent;
-        transform: rotate(90deg);
+    justify-content: center;
+    .menu-triganle{
+        margin-left: 6px;
     }
-
     .close-menu{
-        transform: rotate(270deg);
-        margin: 0 0 -5px 5px;
+        transform: rotate(180deg);
     }
 }
 </style>
