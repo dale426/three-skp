@@ -10,9 +10,12 @@
     */
     touch-action: none;
 }
-
+html, body{
+    height: 100%;
+}
 .v {
-    min-height: calc(100vh);
+    /* min-height: calc(100vh); */
+    height: 100%;
     /* background: #0a1430; */
 }
 .clearfix:after{

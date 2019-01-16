@@ -74,8 +74,7 @@ export default {
         .advance-content{
             overflow-y: hidden;
             display: flex;
-            height: calc(100vh);
-            max-height: calc(100vh);
+            height: 100%;
             flex-direction: column;
             padding: 0 30px 90px;
         }

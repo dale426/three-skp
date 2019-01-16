@@ -5,11 +5,11 @@
             <div class="patent-title">
                 分散片制剂<span class="triangle"></span>
             </div>
-            <div class="patent-content">
-                <p>压痕片工艺</p>
-                <p>易于个体化剂量调整</p>
-            </div>
             <div class="wrap-img-list">
+                <div class="patent-content">
+                    <p>压痕片工艺</p>
+                    <p>易于个体化剂量调整</p>
+                </div>
                 <img width="100%" :src="advanceImg41" alt="品质优势">
             </div>
         </div>
@@ -53,22 +53,26 @@ export default {
             justify-content: space-between;
         }
         .wrap-img-list{
-            // flex-grow: 1;
             display: flex;
+            flex-direction: column;
+            flex-grow: 2;
             align-items: center;
             padding-bottom: 60px;
+            justify-content: center;
         }
         .patent-title{
-            // padding: 20px 0;
             font-size: 20px;
             font-weight: bold;
             text-align: left;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
         }
         .patent-content{
             font-size: 20px;
             color: #5defe0;
             text-align: left;
-            // padding-top: 15px;
+            align-self: flex-start;
             p{
                 line-height: 1.5;
             }

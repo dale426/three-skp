@@ -22,11 +22,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   background: #0a1430;
+  height: 100%;
 }
  ul, li, ol{
    list-style: none;
   }
-body {
-  height: 100%;
-}
+
 </style>

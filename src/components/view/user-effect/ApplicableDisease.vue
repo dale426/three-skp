@@ -3,36 +3,38 @@
         <div class="office-menu" :class="isMasterPage ? '' : 'office-menu-opacity'">
             <div class="advance-content">
                 <AdvanceTitle title="适用疾病" sub-title="Applicable disease"></AdvanceTitle>
-                <div class="disease-content">
-                    <div class="departments-list">
-                        <div class="select-departs-item">选择科室
-                            <svg class="triganle" width="9" height="4">
-                                <polygon
-                                    points="0,6 5,0 10,6"
-                                    fill="#5defe0"
-                                    stroke="#5defe0"
-                                ></polygon>
-                            </svg>
+                <div class="wrap-disease-body">
+                    <div class="disease-content">
+                        <div class="departments-list">
+                            <div class="select-departs-item">选择科室
+                                <svg class="triganle" width="9" height="4">
+                                    <polygon
+                                        points="0,6 5,0 10,6"
+                                        fill="#5defe0"
+                                        stroke="#5defe0"
+                                    ></polygon>
+                                </svg>
+                            </div>
+                            <ul>
+                                <li
+                                class="departments-list-item"
+                                v-for="item in illList"
+                                :key="item.id"
+                                :class="currIndex === item.id ? 'active' : ''"
+                                @click="changeDepartmentsHandler(item.id)"
+                                > {{item.name}} </li>
+                            </ul>
                         </div>
-                        <ul>
-                            <li
-                            class="departments-list-item"
-                            v-for="item in illList"
-                            :key="item.id"
-                            :class="currIndex === item.id ? 'active' : ''"
-                            @click="changeDepartmentsHandler(item.id)"
-                            > {{item.name}} </li>
-                        </ul>
-                    </div>
-                    <div class="humen-body">
-                        <!-- 风湿免疫科 -->
-                        <div class="wrap-circle fsmyk">
-                            <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
-                            <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
-                            <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
-                        </div>
+                        <div class="humen-body">
+                            <!-- 风湿免疫科 -->
+                            <div class="wrap-circle fsmyk">
+                                <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
+                                <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
+                                <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
+                            </div>
 
-                        <img width="100%" height="100%" :src="simpleBody" alt="人体">
+                            <img width="100%" height="100%" :src="simpleBody" alt="人体">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -59,10 +61,12 @@ export default {
             illList: [
                 {
                     name: '器官移植',
-                    id: 0
+                    id: 0,
+                    route: ''
                 }, {
                     name: '风湿免疫科',
-                    id: 1
+                    id: 1,
+                    route: ''
                 }, {
                     name: '消化科',
                     id: 2
@@ -85,6 +89,7 @@ export default {
     methods: {
         changeDepartmentsHandler(id) {
             this.currIndex = id
+
         }
     },
     watch: {
@@ -104,6 +109,9 @@ export default {
 }
 </script>
 <style lang="less">
+    .office-menu{
+        height: 100%;
+    }
     .applicable-disease{
         width: 100%;
         background: url('../../../assets/advance-002.png') center no-repeat;
@@ -112,16 +120,21 @@ export default {
         .advance-content{
             overflow-y: hidden;
             display: flex;
-            height: calc(100vh);
             flex-direction: column;
             padding: 0 30px 90px;
             justify-content: space-between;
+            height: 100%;
+        }
+        .wrap-disease-body{
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            justify-content: center;
         }
         .disease-content{
-            flex-grow: 1;
             display: flex;
             align-items: center;
-            justify-content: space-between
+            justify-content: space-between;
         }
         .departments-list-item{
             height: 18px;
