@@ -11,26 +11,14 @@ export default {
     name: "App",
     data() {
         return {
-            transitionName: 'slide-left',
-            routeList: [
-                'model-one',
-                'model-two',
-                'model-three',
-                'advance-one',
-                'advance-two',
-                'advance-three',
-                'advance-certificate',
-                'advance-four',
-                'advance-five',
-                'applicable-disease'
-            ]
+            transitionName: 'slide-left'
         };
     },
     watch: {
         '$route'(to, from) {
-            let fromIndex = this.routeList.indexOf(from.name);
-            let toIndex = this.routeList.indexOf(to.name);
-            this.transitionName = toIndex < fromIndex ? 'slide-right' : 'slide-left';
+            // let fromIndex = this.routeList.indexOf(from.name);
+            // let toIndex = this.routeList.indexOf(to.name);
+            // this.transitionName = toIndex < fromIndex ? 'slide-right' : 'slide-left';
         }
     }
 };
