@@ -89,7 +89,6 @@ export default {
     methods: {
         changeDepartmentsHandler(id) {
             this.currIndex = id
-
         }
     },
     watch: {

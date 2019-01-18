@@ -99,7 +99,6 @@ export default {
             let el = document.getElementById("model3d");
             // renderer.setSize(this.options.width, this.options.height);
             renderer.setSize(this.options.width, this.options.height);
-
             renderer.setPixelRatio(this.options.pixelRatio);
             el.appendChild && el.appendChild(renderer.domElement);
             //   this.options.element.appendChild &&

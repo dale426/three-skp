@@ -3,14 +3,13 @@ import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
 
 Vue.use(Router)
+Router.prototype.goBack = function () {
+    this.isBack = true
+    window.history.go(-1)
+}
 
 export default new Router({
     routes: [
-        {
-            path: '/',
-            name: 'model-one-01',
-            component: resolve => { require(['@/components/view/model-show/model-one.vue'], resolve) }
-        },
         {
             path: '/model-one',
             name: 'model-one',
