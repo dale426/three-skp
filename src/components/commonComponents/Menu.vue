@@ -93,6 +93,7 @@ export default {
 }
 .menu-list-item {
     margin-bottom: 6px;
+    background: #0a1430;
 }
 .wrap-menu{
     padding: 0 20px;
