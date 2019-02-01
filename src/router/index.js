@@ -71,6 +71,11 @@ export default new Router({
                     component: resolve => { require(['@/components/view/user-effect/components/FsmykComponent.vue'], resolve) }
                 }
             ]
+        },
+        {
+            path: '/body-show',
+            name: 'body-show',
+            component: resolve => { require(['@/components/view/user-effect/BodyShow.vue'], resolve) }
         }
     ]
 })
