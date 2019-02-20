@@ -68,11 +68,11 @@ export default new Router({
                 {
                     path: 'fsmyk',
                     name: 'fsmyk',
-                    component: resolve => { require(['@/components/view/user-effect/components/FsmykComponent.vue'], resolve) }
+                    component: resolve => { require(['@/components/view/user-effect/fsmyk/FsmykComponent.vue'], resolve) }
                 }, {
                     path: 'fsmyk2',
                     name: 'fsmyk2',
-                    component: resolve => { require(['@/components/view/user-effect/components/FsmykComponent.2.vue'], resolve) }
+                    component: resolve => { require(['@/components/view/user-effect/fsmyk/FsmykComponent.2.vue'], resolve) }
                 }
             ]
         },

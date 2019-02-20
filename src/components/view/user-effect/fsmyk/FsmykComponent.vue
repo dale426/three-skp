@@ -25,7 +25,7 @@
     </div>
 </template>
 <script>
-import CommonWrapShow from './CommonWrapShow.vue';
+import CommonWrapShow from '../components/CommonWrapShow.vue';
 import simpleBody from '@/assets/simple-body.png';
 import RedCircle from '@/assets/red-circle.png';
 export default {
@@ -45,7 +45,7 @@ export default {
 }
 </script>
 <style lang="less">
-@import 'bodyShow.less';
+@import '../components/bodyShow.less';
 .fsmyk-1{
     top: 176px;
     left: 65px;

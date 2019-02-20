@@ -38,7 +38,7 @@ export default {
         display: flex;
         position: relative;
         flex-grow: 1;
-        border: 2px solid red;
+        // border: 2px solid red;
         justify-content: flex-end;
         align-items: center;
     }
@@ -46,7 +46,7 @@ export default {
         position: relative;
         width: 210px;
         height: 510px;
-        border: 1px solid blue;
+        // border: 1px solid blue;
     }
     .text-content{
         position: absolute;

@@ -74,8 +74,7 @@ export default {
             illList: [
                 {
                     name: '器官移植',
-                    id: 0,
-                    route: '/applicable-disease/fsmyk2'
+                    id: 0
                 }, {
                     name: '风湿免疫科',
                     id: 1,
