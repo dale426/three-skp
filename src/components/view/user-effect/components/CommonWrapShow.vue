@@ -1,6 +1,6 @@
 <template>
     <div class="show-body-detail">
-        <div class="wrap-body-img">
+        <div class="wrap-img-and-description" @click="nextPageHandler">
             <div class="text-content">
                 <div class="detail-remark-wrap">
                     <slot name="text-content"></slot>
@@ -20,7 +20,12 @@ export default {
         return {
         }
     },
-    components: {}
+    components: {},
+    methods: {
+        nextPageHandler() {
+            this.$emit('next-page');
+        }
+    }
 }
 </script>
 <style lang="less">
@@ -29,7 +34,7 @@ export default {
     height: calc(100vh);
     overflow-y: hidden;
     padding: 72px 30px 90px;
-    .wrap-body-img{
+    .wrap-img-and-description{
         display: flex;
         position: relative;
         flex-grow: 1;

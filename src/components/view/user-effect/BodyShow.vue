@@ -1,8 +1,9 @@
 <template>
-    <div class="first-page">
+    <div class="body-page">
         <div class="linebox">
-            <div class="box-3d">
-                <div id="model3d" class="model3d"></div>
+            <div class="">
+                <div id="model3d"></div>
+                <div v-if="persent !== 100" class="persent">加载中 - {{persent}}%</div>
             </div>
         </div>
     </div>
@@ -14,10 +15,7 @@ import * as OBJLoader from "three-obj-loader";
 import MTLLoader from "three-mtl-loader";
 import Menu from '@/components/commonComponents/Menu';
 import RowIcon from '@/components/commonComponents/RowIcon';
-import {createDecoderModule} from 'draco3d';
 const THREE = require("three");
-// import DracoDecoderModule from '@/utils/draco_decoder.js';
-console.log('createDecoderModule', createDecoderModule);
 
 OBJLoader(THREE);
 const {
@@ -32,7 +30,9 @@ const OrbitControls = initOrbitControls(THREE);
 export default {
     name: "bodyShow",
     data() {
-        return {};
+        return {
+            persent: 0
+        };
     },
     components: { Menu, RowIcon },
     mounted() {
@@ -53,8 +53,6 @@ export default {
         this.initCamera();
         this.initLight();
         this.initMtl();
-
-        // this.initDecoder();
         this.initControl();
         this.animate();
         this.render();
@@ -84,7 +82,7 @@ export default {
                 1,
                 10000
             ));
-            camera.position.set(-40, 50, 90);
+            camera.position.set(-10, 10, 40);
             // camera.position.z = 250;
             camera.lookAt(new Vector3(0, 0, 0));
             this.scene.add(camera);
@@ -109,10 +107,12 @@ export default {
         initMtl() {
             let scene = this.scene;
             // 加载进度
+            var _this = this
             var onProgress = function (xhr) {
                 if (xhr.lengthComputable) {
                     var percentComplete = xhr.loaded / xhr.total * 100;
                     console.log(percentComplete);
+                    _this.persent = Math.round(percentComplete)
                 }
             };
 
@@ -129,22 +129,6 @@ export default {
                 objLoader.load(
                     "girl004.obj",
                     function (object) {
-                        object.position.y = -5;
-                        // object.position.y = -95;
-                        scene.add(object);
-                    },
-                    onProgress,
-                    onError
-                );
-            });
-            mtlLoader.load("girl004.mtl", function (materials) {
-                materials.preload();
-                var objLoader = new THREE.OBJLoader();
-                objLoader.setMaterials(materials);
-                objLoader.setPath("static/obj/markobj/");
-                objLoader.load(
-                    "girl004.obj",
-                    function (object) {
                         // object.position.y = -5;
                         // object.position.y = -95;
                         scene.add(object);
@@ -153,31 +137,26 @@ export default {
                     onError
                 );
             });
-        },
-        initDecoder() {
-            let scene = this.scene;
-
-            // (Optional) Change decoder source directory (defaults to './').
-            THREE.DRACOLoader.setDecoderPath('static/obj/markobj/');
-
-            // (Optional) Use JS decoder (defaults to WebAssembly if supported).
-            THREE.DRACOLoader.setDecoderConfig({ type: 'js' });
-
-            // (Optional) Pre-fetch decoder source files (defaults to load on demand).
-            THREE.DRACOLoader.getDecoderModule();
-
-            var dracoLoader = new THREE.DRACOLoader();
-
-            dracoLoader.load('girl005.drc', function (geometry) {
-                scene.add(new THREE.Mesh(geometry));
-
-                // (Optional) Release the cached decoder module.
-                THREE.DRACOLoader.releaseDecoderModule();
-            });
+            // mtlLoader.load("girl004.mtl", function (materials) {
+            //     materials.preload();
+            //     var objLoader = new THREE.OBJLoader();
+            //     objLoader.setMaterials(materials);
+            //     objLoader.setPath("static/obj/markobj/");
+            //     objLoader.load(
+            //         "girl004.obj",
+            //         function (object) {
+            //             // object.position.y = -5;
+            //             // object.position.y = -95;
+            //             scene.add(object);
+            //         },
+            //         onProgress,
+            //         onError
+            //     );
+            // });
         },
         initControl() {
             const controls = (this.controls = new OrbitControls(this.camera, this.renderer.domElement));
-            controls.target = new THREE.Vector3(0, 0, 0); // 控制焦点
+            controls.target = new THREE.Vector3(0, 2, 0); // 控制焦点
             // 最大仰视角和俯视角
             controls.maxPolarAngle = Math.PI;
             controls.minPolarAngle = 0;
@@ -189,8 +168,8 @@ export default {
             controls.enableDamping = true;
             controls.dampingFactor = 0.3;
             // 最大最小相机移动距离(景深相机)
-            controls.minDistance = 40;
-            controls.maxDistance = 120;
+            controls.minDistance = 20;
+            controls.maxDistance = 60;
         },
 
         animate() {
@@ -206,4 +185,8 @@ export default {
 };
 </script>
 <style lang="less">
+.persent{
+    text-align: center;
+    color: aliceblue;
+}
 </style>
