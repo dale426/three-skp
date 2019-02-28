@@ -1,49 +1,37 @@
 <template>
     <div class="applicable-disease">
-        <div class="office-menu" :class="isMasterPage ? '' : 'office-menu-opacity'">
-            <div class="advance-content">
-                <AdvanceTitle title="适用疾病" sub-title="Applicable disease"></AdvanceTitle>
-                <div class="wrap-disease-body">
-                    <div class="disease-content">
-                        <div class="departments-list">
-                            <div class="select-departs-item">选择科室
-                                <svg class="triganle" width="9" height="4">
-                                    <polygon
-                                        points="0,6 5,0 10,6"
-                                        fill="#5defe0"
-                                        stroke="#5defe0"
-                                    ></polygon>
-                                </svg>
-                            </div>
-                            <ul>
-                                <li
+        <div class="advance-content">
+            <AdvanceTitle title="适用疾病" sub-title="Applicable disease"></AdvanceTitle>
+            <div class="wrap-disease-body">
+                    <div class="departments-list">
+                        <div class="select-departs-item">
+                            选择科室
+                            <svg class="triganle" width="9" height="4">
+                                <polygon points="0,6 5,0 10,6" fill="#5defe0" stroke="#5defe0"></polygon>
+                            </svg>
+                        </div>
+                        <ul>
+                            <li
                                 class="departments-list-item"
                                 v-for="item in illList"
                                 :key="item.id"
                                 :class="currIndex === item.id ? 'active' : ''"
                                 @click="changeDepartmentsHandler(item)"
-                                > {{item.name}} </li>
-                            </ul>
-                        </div>
-                        <div class="humen-body">
-                            <!-- 风湿免疫科 -->
-                            <div class="wrap-circle fsmyk" id="girl-3d">
-                                <!-- <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
+                            >{{item.name}}</li>
+                        </ul>
+                    </div>
+                    <div class="humen-body">
+                        <!-- 风湿免疫科 -->
+                        <div class="wrap-circle fsmyk" id="girl-3d">
+                            <!-- <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
                                 <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
-                                <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8"> -->
-                            </div>
-
-                            <!-- <img width="100%" height="100%" :src="simpleBody" alt="人体"> -->
+                            <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">-->
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="menu">
-                <Menu></Menu>
             </div>
         </div>
-        <div v-if="!isMasterPage" class="detail-components-wrap">
-            <router-view></router-view>
+        <div class="menu">
+            <Menu></Menu>
         </div>
     </div>
 </template>
@@ -78,7 +66,6 @@ export default {
                 }, {
                     name: '风湿免疫科',
                     id: 1,
-                    route: '/applicable-disease/fsmyk'
                 }, {
                     name: '消化科',
                     id: 2
@@ -97,7 +84,7 @@ export default {
                 }]
         }
     },
-    components: {AdvanceTitle, Menu},
+    components: { AdvanceTitle, Menu },
     mounted() {
         // let reFontSize = parseInt(window.document.getElementsByTagName('html')[0].style.fontSize.split('px')[0]) || 0
         // let realHeight = 300 / 41.4 * reFontSize
@@ -123,7 +110,7 @@ export default {
     methods: {
         changeDepartmentsHandler(item) {
             this.currIndex = item.id
-            this.$router.push({path: item.route})
+            this.$router.push({ path: item.route })
         },
         // 初始化three.js
         initThreejs() {
@@ -235,7 +222,7 @@ export default {
     },
     watch: {
         $route: {
-            handler: function(val, oldVal) {
+            handler: function (val, oldVal) {
                 console.log(val);
                 if (val.name === 'applicable-disease') {
                     this.isMasterPage = true
@@ -250,105 +237,101 @@ export default {
 }
 </script>
 <style lang="less">
-    .office-menu{
+.applicable-disease {
+    width: 100%;
+    background: url("../../../assets/advance-002.png") center no-repeat;
+    background-size: cover;
+    color: #5defe0;
+    .advance-content {
+        overflow-y: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 0 30px 90px;
+        justify-content: space-between;
         height: 100%;
     }
-    .applicable-disease{
+    .wrap-disease-body {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: center;
+    }
+    .departments-list-item {
+        height: 18px;
+        line-height: 18px;
+        font-size: 16px;
+        padding: 4px 0 4px 20px;
+        width: 100px;
+        text-align: left;
+        margin-top: 6px;
+        box-sizing: content-box;
+    }
+    .departments-list-item.active {
+        border: 1px solid #5defe0;
+    }
+    .humen-body {
+        position: relative;
+        width: 210px;
+        height: 510px;
+        // .fsmyk {
+        //     .red-circle:nth-child(1) {
+        //         top: 136px;
+        //         left: 76px;
+        //     }
+        //     .red-circle:nth-child(2) {
+        //         top: 214px;
+        //         left: 114px;
+        //     }
+        //     .red-circle:nth-child(3) {
+        //         top: 290px;
+        //         left: 70px;
+        //     }
+        // }
+    }
+    .wrap-circle {
+        position: absolute;
         width: 100%;
-        background: url('../../../assets/advance-002.png') center no-repeat;
-        background-size: cover;
-        color: #5defe0;
-        .advance-content{
-            overflow-y: hidden;
-            display: flex;
-            flex-direction: column;
-            padding: 0 30px 90px;
-            justify-content: space-between;
-            height: 100%;
-        }
-        .wrap-disease-body{
-            display: flex;
-            flex-grow: 1;
-            align-items: center;
-            justify-content: center;
-        }
-        .disease-content{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .departments-list-item{
-            height: 18px;
-            line-height: 18px;
-            font-size: 16px;
-            padding: 4px 0 4px 20px;
-            width: 100px;
-            text-align: left;
-            margin-top: 6px;
-            box-sizing: content-box;
-        }
-        .departments-list-item.active{
-            border: 1px solid #5defe0;
-        }
-        .humen-body{
-            position: relative;
-            width: 210px;
-            height: 510px;
-            // .fsmyk {
-            //     .red-circle:nth-child(1) {
-            //         top: 136px;
-            //         left: 76px;
-            //     }
-            //     .red-circle:nth-child(2) {
-            //         top: 214px;
-            //         left: 114px;
-            //     }
-            //     .red-circle:nth-child(3) {
-            //         top: 290px;
-            //         left: 70px;
-            //     }
-            // }
-        }
-        .wrap-circle{
+        height: 100%;
+        .red-circle {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            .red-circle{
-                position: absolute;
-                width: 30px;
-                height: 30px;
-                animation: redGlint 1.5s infinite;
-                animation-direction: alternate;
+            width: 30px;
+            height: 30px;
+            animation: redGlint 1.5s infinite;
+            animation-direction: alternate;
+        }
+        @keyframes redGlint {
+            from {
+                opacity: 0;
             }
-            @keyframes redGlint {
-                from {opacity: 0;}
-                to {opacity: 0.8;}
+            to {
+                opacity: 0.8;
             }
-        }
-        .menu{
-            position: absolute;
-            bottom: 60px;
-            display: block;
-            width: 100%;
-        }
-        .select-departs-item{
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            .triganle{
-                margin-left: 2px;
-                transform: rotate(180deg);
-            }
-        }
-        .detail-components-wrap{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .office-menu-opacity{
-            opacity: 0.1;
         }
     }
+    .menu {
+        position: absolute;
+        bottom: 60px;
+        display: block;
+        width: 100%;
+    }
+    .select-departs-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        .triganle {
+            margin-left: 2px;
+            transform: rotate(180deg);
+        }
+    }
+    .detail-components-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .office-menu-opacity {
+        opacity: 0.1;
+    }
+}
 </style>
