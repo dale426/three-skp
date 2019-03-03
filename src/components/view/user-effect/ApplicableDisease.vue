@@ -3,35 +3,57 @@
         <div class="advance-content">
             <AdvanceTitle title="适用疾病" sub-title="Applicable disease"></AdvanceTitle>
             <div class="wrap-disease-body">
-                    <div class="departments-list">
-                        <div class="select-departs-item">
-                            选择科室
-                            <svg class="triganle" width="9" height="4">
-                                <polygon points="0,6 5,0 10,6" fill="#5defe0" stroke="#5defe0"></polygon>
-                            </svg>
-                        </div>
-                        <ul>
-                            <li
-                                class="departments-list-item"
-                                v-for="item in illList"
-                                :key="item.id"
-                                :class="currIndex === item.id ? 'active' : ''"
-                                @click="changeDepartmentsHandler(item)"
-                            >{{item.name}}</li>
-                        </ul>
+                <div class="departments-list">
+                    <div class="select-departs-item">
+                        选择科室
+                        <svg class="triganle" width="9" height="4">
+                            <polygon points="0,6 5,0 10,6" fill="#5defe0" stroke="#5defe0"></polygon>
+                        </svg>
                     </div>
-                    <div class="humen-body">
-                        <!-- 风湿免疫科 -->
-                        <div class="wrap-circle fsmyk" id="girl-3d">
-                            <!-- <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
+                    <ul>
+                        <li
+                            class="departments-list-item"
+                            v-for="item in illMenuList"
+                            :key="item.id"
+                            :class="currType === item.id ? 'active' : ''"
+                            @click="changeDepartmentsHandler(item)"
+                        >{{item.name}}</li>
+                    </ul>
+                </div>
+                <div class="humen-body">
+                    <!-- 风湿免疫科 -->
+                    <div class="wrap-circle fsmyk" id="girl-3d">
+                        <!-- <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
                                 <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
-                            <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">-->
-                        </div>
+                        <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">-->
                     </div>
+                    <div class="ill-descrip" v-if="isMasterPage">
+                        <section class="sickness">
+                            <p>{{ illDesList[currType][currIndex].title }}</p>
+                            <div class="sickness__description">指南推荐：
+                                <p
+                                    v-for="(item, index) in illDesList[currType][currIndex].description"
+                                    :key="index"
+                                >{{item}}</p>
+                                <!-- <p>《EULAR/ERA-EDTA成人及</p>
+                                <p>&nbsp;&nbsp;儿童狼疮性肾炎的管理建议（2012版）》</p>
+                                <p>《系统性红斑狼疮诊断及治疗指南（2010版）》</p>-->
+                            </div>
+                        </section>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="menu">
             <Menu></Menu>
+        </div>
+        <div v-if="isMasterPage" class="masker">
+            <div>
+                <svg width="36" height="36" @click="nextPageHandler">
+                    <circle cx="18" cy="18" r="16" stroke="#5defe0" stroke-width="2" fill="none"></circle>
+                    <polyline points="14 10 26 18 14 26" stroke="#5defe0" stroke-width="2"></polyline>
+                </svg>
+            </div>
         </div>
     </div>
 </template>
@@ -49,43 +71,46 @@ const {
     Scene,
     PerspectiveCamera,
     DirectionalLight,
-    Vector3
+    Vector3,
+    Color
 } = THREE;
+import { illDesList } from './components/illList.js';
 const OrbitControls = initOrbitControls(THREE);
 export default {
     name: 'applicable-disease',
     data() {
         return {
-            isMasterPage: true,
-            currIndex: null,
+            isMasterPage: false,
+            illDesList,
+            currIndex: 0,
+            currType: null,
             simpleBody,
-            illList: [
+            illMenuList: [
                 {
-                    name: '器官移植',
-                    id: 0
-                }, {
                     name: '风湿免疫科',
-                    id: 1,
+                    id: 'fsmyk'
                 }, {
                     name: '消化科',
-                    id: 2
+                    id: 'xhk'
                 }, {
                     name: '血液科',
-                    id: 3
+                    id: 'xyk'
                 }, {
                     name: '神经内科',
-                    id: 4
+                    id: 'sjnk'
                 }, {
                     name: '肾内科',
-                    id: 5
+                    id: 'snk'
                 }, {
                     name: '皮肤科',
-                    id: 6
+                    id: 'pfk'
                 }]
         }
     },
     components: { AdvanceTitle, Menu },
     mounted() {
+        console.log('illDesList', this.illDesList);
+
         // let reFontSize = parseInt(window.document.getElementsByTagName('html')[0].style.fontSize.split('px')[0]) || 0
         // let realHeight = 300 / 41.4 * reFontSize
         const defaultOptions = {
@@ -109,8 +134,23 @@ export default {
     },
     methods: {
         changeDepartmentsHandler(item) {
-            this.currIndex = item.id
-            this.$router.push({ path: item.route })
+            this.isMasterPage = true
+            this.camera.position.set(-10, 10, 10);
+            /*             let pointLight = new THREE.PointLight(0xe62f4d, 1);
+                        pointLight.position.set(0, 0, 0)
+                        this.scene.add(pointLight)
+                        this.render() */
+            this.currType = item.id
+            this.currIndex = 0
+        },
+        nextPageHandler() {
+            let { currIndex, currType, illDesList } = this
+            if (illDesList[currType].length - 1 > currIndex) {
+                this.currIndex++
+            } else {
+                this.isMasterPage = false
+                this.currIndex = 0
+            }
         },
         // 初始化three.js
         initThreejs() {
@@ -125,8 +165,8 @@ export default {
         },
         // 初始化场景
         initSence() {
-            this.scene = new Scene();
-            // scene.background = new Color(0xffffff);
+            const scene = this.scene = new Scene();
+            // scene.background = new Color(0xe62f4d, 0.2);
         },
         // 初始化相机
         initCamera() {
@@ -153,8 +193,10 @@ export default {
 
             // 点光
             const pointLight = new THREE.PointLight(0xfefefe, 0.8);
-            pointLight.position.set(0, 200, 200)
-            // pointLight.distance = 50
+            pointLight.position.set(10, 10, 10)
+            pointLight.distance = 100
+
+            this.camera.add(pointLight);
             this.camera.add(light);
         },
         // 材质模型加载
@@ -273,6 +315,7 @@ export default {
         position: relative;
         width: 210px;
         height: 510px;
+        z-index: 11;
         // .fsmyk {
         //     .red-circle:nth-child(1) {
         //         top: 136px;
@@ -332,6 +375,51 @@ export default {
     }
     .office-menu-opacity {
         opacity: 0.1;
+    }
+
+    .ill-descrip {
+        margin-top: 180px;
+        z-index: 12;
+        width: calc(~"100vw - 30px");
+        margin-left: calc(~"270px - 100vw");
+        .sickness {
+            text-align: left;
+            & > p {
+                font-size: 16px;
+                font-weight: bold;
+            }
+            .sickness__description {
+                margin-top: 30px;
+                font-size: 15px;
+                font-weight: 600;
+                p:first-child {
+                    margin-top: 6px;
+                }
+                p {
+                    background: rgba(5, 13, 48, 0.5);
+                    padding: 2px;
+                    font-size: 14px;
+                    font-weight: 100;
+                }
+            }
+        }
+    }
+
+    .masker {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #041525;
+        opacity: 0.9;
+        display: flex;
+        flex-direction: column-reverse;
+        padding-bottom: 40px;
+    }
+
+    a {
+        color: #e62f4d;
     }
 }
 </style>
