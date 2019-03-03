@@ -64,6 +64,7 @@ import MTLLoader from "three-mtl-loader";
 import AdvanceTitle from '../advantage/components/AdvaceTitle.vue';
 import Menu from '@/components/commonComponents/Menu';
 import simpleBody from '@/assets/simple-body.png';
+import { illDesList } from './components/illList.js';
 const THREE = require("three");
 OBJLoader(THREE);
 const {
@@ -71,10 +72,8 @@ const {
     Scene,
     PerspectiveCamera,
     DirectionalLight,
-    Vector3,
-    Color
+    Vector3
 } = THREE;
-import { illDesList } from './components/illList.js';
 const OrbitControls = initOrbitControls(THREE);
 export default {
     name: 'applicable-disease',
@@ -165,7 +164,7 @@ export default {
         },
         // 初始化场景
         initSence() {
-            const scene = this.scene = new Scene();
+            /* const scene =  */this.scene = new Scene();
             // scene.background = new Color(0xe62f4d, 0.2);
         },
         // 初始化相机
