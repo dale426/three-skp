@@ -145,8 +145,7 @@ export default {
             this.changeCarame()
         },
         changeCarame() {
-            console.log('this.illList', );
-            let arr = illDesList[this.currType][this.currIndex].carame;
+            let arr = illDesList[this.currType][this.currIndex].carame
             this.camera.position.set(arr[0], arr[1], arr[2]);
             if (this.currType === 'sjnk' && (this.currIndex === 0 || this.currIndex === 2)) {
                 this.mtl.position.y = -1
@@ -164,8 +163,6 @@ export default {
                 this.currIndex = 0
                 this.camera.position.set(0, 20, 20);
                 this.mtl.position.y = 0
-
-
             }
         },
         // 初始化three.js

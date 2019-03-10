@@ -69,9 +69,8 @@ const OrbitControls = initOrbitControls(THREE);
 export default {
     name: "model-one",
     data() {
-        
         return {
-            persent:0,
+            persent: 0
         };
     },
     components: {Menu, RowIcon},
@@ -146,7 +145,7 @@ export default {
         // 材质模型加载
         initMtl() {
             let scene = this.scene;
-            const _this =this;
+            const _this = this;
             // 加载进度
             var onProgress = function (xhr) {
                 if (xhr.lengthComputable) {

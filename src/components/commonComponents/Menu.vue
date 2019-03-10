@@ -4,32 +4,22 @@
             <div class="menu-title" @click="showMenu=!showMenu">导航 Guide
                 <div class="menu-triganle" :class="showMenu ? 'close-menu' : ''">
                     <svg width="10" height="6">
-                        <polygon
-                            points="0,6 5,0 10,6"
-                            fill="#5defe0"
-                            stroke="#5defe0"
-                        ></polygon>
+                        <polygon points="0,6 5,0 10,6" fill="#5defe0" stroke="#5defe0"></polygon>
                     </svg>
                 </div>
             </div>
             <ul v-if="showMenu" class="menu-list">
-                <li class="menu-list-item" v-for="item in menuList" :key="item.id" @click="menuChangeHandler(item.route)">{{item.name}}</li>
+                <li
+                    class="menu-list-item"
+                    v-for="item in menuList"
+                    :key="item.id"
+                    @click="menuChangeHandler(item.route)"
+                >{{item.name}}</li>
             </ul>
         </div>
         <svg v-if="showRow" width="36" height="36" @click="nextPageHandler">
-            <circle
-                cx="18"
-                cy="18"
-                r="16"
-                stroke="#5defe0"
-                stroke-width="2"
-                fill="none"
-                />
-            <polyline
-                points="14 10 26 18 14 26"
-                stroke="#5defe0"
-                stroke-width="2"
-            ></polyline>
+            <circle cx="18" cy="18" r="16" stroke="#5defe0" stroke-width="2" fill="none"></circle>
+            <polyline points="14 10 26 18 14 26" stroke="#5defe0" stroke-width="2"></polyline>
         </svg>
     </div>
 </template>
@@ -57,22 +47,21 @@ export default {
                 name: '适用疾病',
                 id: 3,
                 route: 'applicable-disease'
-            }, 
-            // {
-            //     name: '使用说明',
-            //     id: 4,
-            //     route: ''
-            // }
+            }
+                // {
+                //     name: '使用说明',
+                //     id: 4,
+                //     route: ''
+                // }
             ]
         }
     },
     mounted() {
         const _this = this;
-        document.body.addEventListener('click', function(event) {
-            let el = document.getElementsByClassName('menu-title')[0];
+        document.body.addEventListener('click', function (event) {
             let el2 = document.getElementsByClassName('menu-list')[0];
             if (el2) {
-                if(!el2.contains(event.target)) {
+                if (!el2.contains(event.target)) {
                     _this.showMenu = false
                 }
             }
@@ -81,9 +70,9 @@ export default {
     methods: {
         menuChangeHandler(route) {
             if (this.$route.path.replace(/\//g, '') === route) {
-                    this.showMenu = false
+                this.showMenu = false
             }
-            this.$router.push({path: route});
+            this.$router.push({ path: route });
         },
         nextPageHandler() {
             this.$emit('next-page')
@@ -92,7 +81,8 @@ export default {
 }
 </script>
 <style lang="less">
-.menu-list-item, .menu-title{
+.menu-list-item,
+.menu-title {
     width: 180px;
     height: 36px;
     line-height: 36px;
@@ -103,7 +93,7 @@ export default {
     color: #5defe0;
     font-size: 16px;
 }
-.menu-list{
+.menu-list {
     position: absolute;
     bottom: 38px;
     left: 0;
@@ -112,14 +102,14 @@ export default {
     margin-bottom: 6px;
     background: #0a1430;
 }
-.wrap-menu{
+.wrap-menu {
     padding: 0 20px;
     width: 100%;
-    .menu-item{
+    .menu-item {
         position: relative;
         float: left;
     }
-    svg{
+    svg {
         float: right;
     }
 }
@@ -128,10 +118,10 @@ export default {
     align-items: center;
     position: relative;
     justify-content: center;
-    .menu-triganle{
+    .menu-triganle {
         margin-left: 6px;
     }
-    .close-menu{
+    .close-menu {
         transform: rotate(180deg);
     }
 }
