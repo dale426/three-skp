@@ -22,6 +22,7 @@
                 </div>
                 <div class="humen-body">
                     <!-- 风湿免疫科 -->
+                    <div v-if="persent !== 100" class="persent">加载中 - {{persent}}%</div>
                     <div class="wrap-circle fsmyk" id="girl-3d">
                         <!-- <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
                                 <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
@@ -30,7 +31,10 @@
                     <div class="ill-descrip" v-if="isMasterPage">
                         <section class="sickness">
                             <p>{{ illDesList[currType][currIndex].title }}</p>
-                            <div class="sickness__description">指南推荐：
+                            <div class="sickness__description">
+                                <span
+                                    v-if="illDesList[currType][currIndex].description.length"
+                                >指南推荐：</span>
                                 <p
                                     v-for="(item, index) in illDesList[currType][currIndex].description"
                                     :key="index"
@@ -79,6 +83,8 @@ export default {
     name: 'applicable-disease',
     data() {
         return {
+            persent: 0,
+            mtl: null,
             isMasterPage: false,
             illDesList,
             currIndex: 0,
@@ -134,21 +140,32 @@ export default {
     methods: {
         changeDepartmentsHandler(item) {
             this.isMasterPage = true
-            this.camera.position.set(-10, 10, 10);
-            /*             let pointLight = new THREE.PointLight(0xe62f4d, 1);
-                        pointLight.position.set(0, 0, 0)
-                        this.scene.add(pointLight)
-                        this.render() */
             this.currType = item.id
             this.currIndex = 0
+            this.changeCarame()
+        },
+        changeCarame() {
+            console.log('this.illList', );
+            let arr = illDesList[this.currType][this.currIndex].carame;
+            this.camera.position.set(arr[0], arr[1], arr[2]);
+            if (this.currType === 'sjnk' && (this.currIndex === 0 || this.currIndex === 2)) {
+                this.mtl.position.y = -1
+            } else {
+                this.mtl.position.y = 0
+            }
         },
         nextPageHandler() {
             let { currIndex, currType, illDesList } = this
             if (illDesList[currType].length - 1 > currIndex) {
                 this.currIndex++
+                this.changeCarame()
             } else {
                 this.isMasterPage = false
                 this.currIndex = 0
+                this.camera.position.set(0, 20, 20);
+                this.mtl.position.y = 0
+
+
             }
         },
         // 初始化three.js
@@ -175,7 +192,7 @@ export default {
                 1,
                 10000
             ));
-            camera.position.set(-10, 10, 40);
+            camera.position.set(0, 20, 20);
             // camera.position.z = 250;
             camera.lookAt(new Vector3(0, 0, 0));
             this.scene.add(camera);
@@ -206,7 +223,6 @@ export default {
             var onProgress = function (xhr) {
                 if (xhr.lengthComputable) {
                     var percentComplete = xhr.loaded / xhr.total * 100;
-                    console.log(percentComplete);
                     _this.persent = Math.round(percentComplete)
                 }
             };
@@ -224,6 +240,7 @@ export default {
                 objLoader.load(
                     "girl004.obj",
                     function (object) {
+                        _this.mtl = object
                         // object.position.y = -5;
                         // object.position.y = -95;
                         scene.add(object);
@@ -312,9 +329,14 @@ export default {
     }
     .humen-body {
         position: relative;
-        width: 210px;
+        width: 260px;
         height: 510px;
         z-index: 11;
+        .persent {
+            text-align: center;
+            color: #5defe0;
+            margin-top: 99%;
+        }
         // .fsmyk {
         //     .red-circle:nth-child(1) {
         //         top: 136px;
@@ -380,7 +402,7 @@ export default {
         margin-top: 180px;
         z-index: 12;
         width: calc(~"100vw - 30px");
-        margin-left: calc(~"270px - 100vw");
+        margin-left: calc(~"300px - 100vw");
         .sickness {
             text-align: left;
             & > p {

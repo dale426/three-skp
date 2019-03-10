@@ -57,15 +57,32 @@ export default {
                 name: '适用疾病',
                 id: 3,
                 route: 'applicable-disease'
-            }, {
-                name: '使用说明',
-                id: 4,
-                route: ''
-            }]
+            }, 
+            // {
+            //     name: '使用说明',
+            //     id: 4,
+            //     route: ''
+            // }
+            ]
         }
+    },
+    mounted() {
+        const _this = this;
+        document.body.addEventListener('click', function(event) {
+            let el = document.getElementsByClassName('menu-title')[0];
+            let el2 = document.getElementsByClassName('menu-list')[0];
+            if (el2) {
+                if(!el2.contains(event.target)) {
+                    _this.showMenu = false
+                }
+            }
+        }, false)
     },
     methods: {
         menuChangeHandler(route) {
+            if (this.$route.path.replace(/\//g, '') === route) {
+                    this.showMenu = false
+            }
             this.$router.push({path: route});
         },
         nextPageHandler() {

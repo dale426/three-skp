@@ -8,7 +8,9 @@
                         <p>吗替麦考酚酯分散片</p>
                         <p class="madeinchaina">中/国/制/造&nbsp;&nbsp;&nbsp;&nbsp;国/际/品/质</p>
                     </div>
-                    <div id="model3d" class="model3d"></div>
+                    <div id="model3d" class="model3d">
+                        <div v-if="persent !== 100" class="persent">加载中 - {{persent}}%</div>
+                    </div>
                     <div class="open-item">
                         <div class="right-angle"></div>
                         <div @click="preModelHandler">
@@ -46,7 +48,9 @@ const OrbitControls = initOrbitControls(THREE);
 export default {
     name: "model-three",
     data() {
-        return {};
+        return {
+            persent: 0
+        };
     },
     components: {Menu, RowIcon},
     mounted() {
@@ -121,11 +125,12 @@ export default {
         // 材质模型加载
         initMtl() {
             let scene = this.scene;
+            const _this = this;
             // 加载进度
             var onProgress = function (xhr) {
                 if (xhr.lengthComputable) {
                     var percentComplete = xhr.loaded / xhr.total * 100;
-                    console.log(percentComplete);
+                    _this.persent = Math.round(percentComplete)
                 }
             };
 
