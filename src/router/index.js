@@ -63,23 +63,7 @@ export default new Router({
         {
             path: '/applicable-disease',
             name: 'applicable-disease',
-            component: resolve => { require(['@/components/view/user-effect/ApplicableDisease.vue'], resolve) },
-            children: [
-                {
-                    path: 'fsmyk',
-                    name: 'fsmyk',
-                    component: resolve => { require(['@/components/view/user-effect/fsmyk/FsmykComponent.vue'], resolve) }
-                }, {
-                    path: 'fsmyk2',
-                    name: 'fsmyk2',
-                    component: resolve => { require(['@/components/view/user-effect/fsmyk/FsmykComponent.2.vue'], resolve) }
-                }
-            ]
-        },
-        {
-            path: '/body-show',
-            name: 'body-show',
-            component: resolve => { require(['@/components/view/user-effect/BodyShow.vue'], resolve) }
+            component: resolve => { require(['@/components/view/user-effect/ApplicableDisease.vue'], resolve) }
         }
     ]
 })

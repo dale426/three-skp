@@ -397,6 +397,7 @@ export default {
 
     .ill-descrip {
         margin-top: 180px;
+        position: relative;
         z-index: 12;
         width: calc(~"100vw - 30px");
         margin-left: calc(~"300px - 100vw");
