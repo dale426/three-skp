@@ -83,6 +83,8 @@ export default {
     name: 'applicable-disease',
     data() {
         return {
+            circleList: [], // 场景中的球体
+            sprite: null, // 球体对象
             persent: 0,
             mtl: null,
             isMasterPage: false,
@@ -114,10 +116,6 @@ export default {
     },
     components: { AdvanceTitle, Menu },
     mounted() {
-        console.log('illDesList', this.illDesList);
-
-        // let reFontSize = parseInt(window.document.getElementsByTagName('html')[0].style.fontSize.split('px')[0]) || 0
-        // let realHeight = 300 / 41.4 * reFontSize
         const defaultOptions = {
             width: document.getElementById('girl-3d').clientWidth,
             // height: window.innerHeight - realHeight,
@@ -139,6 +137,9 @@ export default {
     },
     methods: {
         changeDepartmentsHandler(item) {
+            if (this.persent !== 100) {
+                return;
+            }
             this.isMasterPage = true
             this.currType = item.id
             this.currIndex = 0
@@ -150,8 +151,11 @@ export default {
             if (this.currType === 'sjnk' && (this.currIndex === 0 || this.currIndex === 2)) {
                 this.mtl.position.y = -1
             } else {
-                this.mtl.position.y = 0
+                if (this.persent === 100) {
+                    this.mtl.position.y = 0
+                }
             }
+            this.addRedCircle()
         },
         nextPageHandler() {
             let { currIndex, currType, illDesList } = this
@@ -162,8 +166,43 @@ export default {
                 this.isMasterPage = false
                 this.currIndex = 0
                 this.camera.position.set(0, 20, 20);
-                this.mtl.position.y = 0
+                if (this.persent === 100) {
+                    this.mtl.position.y = 0
+                }
             }
+        },
+        addRedCircle() {
+            let { currIndex, currType, illDesList } = this
+
+            this.circleList.forEach(element => {
+                this.scene.remove(element); // 移除小球
+            });
+            console.log('currIndex, currType, illDesList', currIndex, currType, illDesList);
+            switch(currType) {
+                case 'fsmyk': 
+                if(currIndex === 1) {
+                    let circle1 = this.sprite.clone()
+                    circle1.position.set(-0.18, 2.36, 0.2)
+                    this.circleList.push(circle1);
+                    this.scene.add(circle1);
+                } else if(currIndex === 2) {
+
+                }
+
+                    break;
+                case 'xhk': 
+                    break;
+                case 'xyk': 
+                    break;
+                case 'sjnk': 
+                    break;
+                case 'snk': 
+                    break;
+                case 'pfk': 
+                    break;
+
+            }
+
         },
         // 初始化three.js
         initThreejs() {
@@ -211,6 +250,25 @@ export default {
 
             this.camera.add(pointLight);
             this.camera.add(light);
+        },
+        initSun() {
+            var spriteMap = new THREE.TextureLoader().load("static/red-circle.png");
+            // 设置材质属性
+            var spriteMaterial = new THREE.SpriteMaterial({ map: spriteMap, color: 0xffffff, opacity: 0.2 });
+            var i = 0
+            setInterval(() => {
+                i++;
+                i >= 10 ? i = 1 : null;
+                // 修改材质属性
+                spriteMaterial.setValues({ opacity: i / 10 })
+            }, 300)
+            var sprite = new THREE.Sprite(spriteMaterial);
+            // sprite.lookAt(new Vector3(0, 0, 0));
+            var x = 0.30
+            sprite.scale.set(x, x, x)
+            this.sprite = sprite;
+            // sprite.position.set(0, 2.5, 0.2)
+            // this.scene.add(sprite);
         },
         // 材质模型加载
         initMtl() {
@@ -261,7 +319,7 @@ export default {
             controls.enableDamping = true;
             controls.dampingFactor = 0.3;
             // 最大最小相机移动距离(景深相机)
-            controls.minDistance = 20;
+            controls.minDistance = 12;
             controls.maxDistance = 60;
         },
 

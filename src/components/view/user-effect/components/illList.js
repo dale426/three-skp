@@ -2,11 +2,11 @@ export const illDesList = {
     fsmyk: [{
         title: '系统性红斑狼疮',
         position: '全身',
-        carame: [0, 18, 18],
+        carame: [-12, 18, 18],
         description: ['《EULAR/ERA-EDTA 成人及儿童狼疮性肾炎的管理建议（2012版）》', '《系统性红斑狼疮诊断及治疗指南（2010版）》']
     }, {
         title: '狼疮性肾炎',
-        carame: [-12, 12, 12],
+        carame: [0, 12, 12],
         position: '肾脏',
         description: ['《KDIGO肾小球肾炎的临床实践指南（2012版）》', '《EULAR/ERA-EDTA 成人及儿童狼疮性肾炎的管理建议（2012版）》']
     }, {

@@ -64,6 +64,11 @@ export default new Router({
             path: '/applicable-disease',
             name: 'applicable-disease',
             component: resolve => { require(['@/components/view/user-effect/ApplicableDisease.vue'], resolve) }
+        },
+        {
+            path: '/test',
+            name: 'test',
+            component: resolve => { require(['@/components/view/test.vue'], resolve) }
         }
     ]
 })
