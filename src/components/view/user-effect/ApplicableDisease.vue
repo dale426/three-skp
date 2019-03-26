@@ -263,7 +263,6 @@ export default {
                 spriteMaterial.setValues({ opacity: i / 10 })
             }, 300)
             var sprite = new THREE.Sprite(spriteMaterial);
-            // sprite.lookAt(new Vector3(0, 0, 0));
             var x = 0.30
             sprite.scale.set(x, x, x)
             this.sprite = sprite;
