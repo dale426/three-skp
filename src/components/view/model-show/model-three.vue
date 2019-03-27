@@ -15,7 +15,7 @@
                         <div class="right-angle"></div>
                         <div @click="preModelHandler">
                             <RowIcon style="padding-left:10px;" direct="left"></RowIcon>
-                            BACK
+                            返回
                         </div>
                         <div class="right-angle"></div>
                 </div>

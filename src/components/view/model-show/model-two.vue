@@ -15,10 +15,10 @@
                     <div class="open-item">
                         <div class="right-angle"></div>
                         <div @click="prePageHandler">
-                             <RowIcon style="padding-right:10px;" direct="left"></RowIcon>BACK
+                             <RowIcon style="padding-right:10px;" direct="left"></RowIcon>返回
                         </div>
                         <div @click="nextModelHandler">
-                             OPEN<RowIcon style="padding-left:10px;" direct="right"></RowIcon>
+                             查看药片<RowIcon style="padding-left:10px;" direct="right"></RowIcon>
                         </div>
                         <div class="right-angle"></div>
                 </div>

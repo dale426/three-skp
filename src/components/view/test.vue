@@ -128,32 +128,33 @@ export default {
             this.camera.add(light);
         },
         initSun() {
+            let radius = 5
+            let segemnt = 10
+            let rings = 16
 
-    var radius = 5, segemnt = 10, rings = 16;
- 
-    var sphereMaterial = new THREE.MeshPhongMaterial({ color: 0xCC0000 });
- 
-    var sphere = new THREE.Mesh(
-        new THREE.SphereGeometry(radius,segemnt,rings),
-        sphereMaterial
-        );
- 
-    sphere.geometry.verticesNeedUpdate = true;
-    sphere.geometry.normalsNeedUpdate = true;
- 
-    this.scene.add(sphere);
+            let sphereMaterial = new THREE.MeshPhongMaterial({ color: 0xCC0000 });
 
-     /*        var geometry = new THREE.Geometry()
-            var material = new THREE.PointsMaterial({
-                size: 4,
-                vertexColors: true, // 是否为几何体的每个顶点应用颜色，默认值是为所有面应用材质的颜色
-                color: 0xffffff
-            })
-          var particle = new THREE.Vector3(0, 0, 0)
-          geometry.vertices.push(particle)
-          geometry.colors.push(new THREE.Color(Math.random() * 0xffffff))
-          var points = new THREE.Points(geometry, material)
-          this.scene.add(points) */
+            let sphere = new THREE.Mesh(
+                new THREE.SphereGeometry(radius, segemnt, rings),
+                sphereMaterial
+            );
+
+            sphere.geometry.verticesNeedUpdate = true;
+            sphere.geometry.normalsNeedUpdate = true;
+
+            this.scene.add(sphere);
+
+            /*        var geometry = new THREE.Geometry()
+                   var material = new THREE.PointsMaterial({
+                       size: 4,
+                       vertexColors: true, // 是否为几何体的每个顶点应用颜色，默认值是为所有面应用材质的颜色
+                       color: 0xffffff
+                   })
+                 var particle = new THREE.Vector3(0, 0, 0)
+                 geometry.vertices.push(particle)
+                 geometry.colors.push(new THREE.Color(Math.random() * 0xffffff))
+                 var points = new THREE.Points(geometry, material)
+                 this.scene.add(points) */
         },
 
         // 材质模型加载

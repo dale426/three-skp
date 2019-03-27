@@ -83,7 +83,6 @@ export default {
     name: 'applicable-disease',
     data() {
         return {
-            circleList: [], // 场景中的球体
             sprite: null, // 球体对象
             persent: 0,
             mtl: null,
@@ -149,7 +148,7 @@ export default {
             let arr = illDesList[this.currType][this.currIndex].carame
             this.camera.position.set(arr[0], arr[1], arr[2]);
             if (this.currType === 'sjnk' && (this.currIndex === 0 || this.currIndex === 2)) {
-                this.mtl.position.y = -1
+                // this.mtl.position.y = -1
             } else {
                 if (this.persent === 100) {
                     this.mtl.position.y = 0
@@ -171,34 +170,52 @@ export default {
                 }
             }
         },
-        addRedCircle() {
+        async addRedCircle() {
             let { currIndex, currType, illDesList } = this
+            if(!this.sprite) {
+                this.initSun();
+            }
 
-            this.circleList.forEach(element => {
-                this.scene.remove(element); // 移除小球
-            });
-            console.log('currIndex, currType, illDesList', currIndex, currType, illDesList);
-            switch(currType) {
-                case 'fsmyk': 
-                if(currIndex === 1) {
-                    let circle1 = this.sprite.clone()
-                    circle1.position.set(-0.18, 2.36, 0.2)
-                    this.circleList.push(circle1);
-                    this.scene.add(circle1);
-                } else if(currIndex === 2) {
-
-                }
+            let sprite = this.sprite
+            switch (currType) {
+                case 'fsmyk':
+                    if (currIndex === 1) {
+                        sprite.material.visible = true
+                        sprite.position.set(-0.18, 2.36, 0.2)
+                    } else if (currIndex === 2) {
+                        this.mtl.position.y = -0.5
+                        sprite.position.set(-0.18, 2.5, 0.26)
+                    } else {
+                        sprite.material.visible = false
+                    }
 
                     break;
-                case 'xhk': 
+                case 'xhk':
+                        sprite.material.visible = true
+                        sprite.position.set(-0.16, 2.6, 0.2);
                     break;
-                case 'xyk': 
+                case 'xyk':
+                        sprite.material.visible = false
                     break;
-                case 'sjnk': 
+                case 'sjnk':
+                    if (currIndex === 0) {
+                        sprite.material.visible = true
+                        this.mtl.position.y = -1;
+                        sprite.position.set(-0.11, 2.7, 0.12);
+                    } else if (currIndex === 2) {
+                        sprite.material.visible = true
+                        this.mtl.position.y = -1.4;
+                        sprite.position.set(-0.05, 2.4, 0.14);
+                    } else {
+                        sprite.material.visible = false
+                    }
                     break;
-                case 'snk': 
+                case 'snk':
+                        sprite.material.visible = true
+                        sprite.position.set(-0.18, 2.3, 0.2);
                     break;
-                case 'pfk': 
+                case 'pfk':
+                        sprite.material.visible = false
                     break;
 
             }
@@ -265,6 +282,8 @@ export default {
             var sprite = new THREE.Sprite(spriteMaterial);
             var x = 0.30
             sprite.scale.set(x, x, x)
+            sprite.material.visible = false
+            this.scene.add(sprite);
             this.sprite = sprite;
             // sprite.position.set(0, 2.5, 0.2)
             // this.scene.add(sprite);

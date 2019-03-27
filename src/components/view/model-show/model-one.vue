@@ -15,7 +15,7 @@
                     <div class="open-item">
                         <div class="right-angle"></div>
                         <div @click="nextModelHandler">
-                            OPEN
+                            查看内包装
                             <RowIcon style="padding-left:10px;" direct="right"></RowIcon>
                         </div>
                         <div class="right-angle"></div>
