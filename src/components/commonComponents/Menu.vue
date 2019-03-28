@@ -38,7 +38,7 @@ export default {
             menuList: [{
                 name: '产品图鉴',
                 id: 1,
-                route: 'model-one'
+                route: 'model-two'
             }, {
                 name: '品质优势',
                 id: 2,

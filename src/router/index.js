@@ -13,7 +13,7 @@ export default new Router({
         {
             path: '/',
             name: 'model-one-01',
-            component: resolve => { require(['@/components/view/model-show/model-one.vue'], resolve) }
+            component: resolve => { require(['@/components/view/model-show/model-two.vue'], resolve) }
         },
         {
             path: '/model-one',

@@ -38,7 +38,7 @@ export const illDesList = {
         description: []
     }, {
         title: '骨髓移植',
-        carame: [0, 20, 20],
+        carame: [0, 20, -20],
         position: '全身血管',
         description: ['《EBMT-ELN规范化操作建议移植物抗宿主病(GVHD)的预防和管理（2014版）》']
     }],
@@ -60,7 +60,7 @@ export const illDesList = {
     }, {
         title: '重症肌无力',
         position: '全身肌肉',
-        carame: [16, 16, 16],
+        carame: [0, 16, 16],
         description: ['《中国重症肌无力诊断和治疗指南（2015版）》', '《ABN管理指南：重症肌无力（2015版）》']
     }],
     snk: [{

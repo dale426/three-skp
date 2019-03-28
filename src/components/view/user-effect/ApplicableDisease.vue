@@ -84,6 +84,7 @@ export default {
     data() {
         return {
             sprite: null, // 球体对象
+            sprite2: null,
             persent: 0,
             mtl: null,
             isMasterPage: false,
@@ -165,6 +166,10 @@ export default {
                 this.isMasterPage = false
                 this.currIndex = 0
                 this.camera.position.set(0, 20, 20);
+                console.log('this.sprite2', this.sprite2);
+                
+                        this.sprite2 ? this.sprite2.remove() : null
+
                 if (this.persent === 100) {
                     this.mtl.position.y = 0
                 }
@@ -187,7 +192,7 @@ export default {
                         sprite.position.set(-0.18, 2.5, 0.26)
                     } else {
                         sprite.material.visible = false
-                    }
+                    };
 
                     break;
                 case 'xhk':
@@ -195,7 +200,12 @@ export default {
                         sprite.position.set(-0.16, 2.6, 0.2);
                     break;
                 case 'xyk':
-                        sprite.material.visible = false
+                if(currIndex === 1) {
+                    sprite.material.visible = true
+                    sprite.position.set(0, 2.7, -0.25);
+                } else {
+                    sprite.material.visible = false
+                };
                     break;
                 case 'sjnk':
                     if (currIndex === 0) {
@@ -206,6 +216,14 @@ export default {
                         sprite.material.visible = true
                         this.mtl.position.y = -1.4;
                         sprite.position.set(-0.05, 2.4, 0.14);
+                    } else if (currIndex === 3) {
+                        this.mtl.position.y = -0.4;
+                        this.mtl.position.x = -0.1;
+                        sprite.position.set(0.38, 2.9, -0.1);
+                        let sprite2 = this.sprite2 = sprite.clone()
+                        sprite.position.set(0.7, 1.9, -0.1);
+                        this.scene.add(sprite2)
+                        sprite.material.visible = true
                     } else {
                         sprite.material.visible = false
                     }
