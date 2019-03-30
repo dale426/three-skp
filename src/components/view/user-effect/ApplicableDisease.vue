@@ -145,42 +145,39 @@ export default {
             this.currIndex = 0
             this.changeCarame()
         },
+        // 设置相机位置
         changeCarame() {
             let arr = illDesList[this.currType][this.currIndex].carame
             this.camera.position.set(arr[0], arr[1], arr[2]);
-            if (this.currType === 'sjnk' && (this.currIndex === 0 || this.currIndex === 2)) {
-                // this.mtl.position.y = -1
-            } else {
                 if (this.persent === 100) {
                     this.mtl.position.y = 0
                 }
-            }
             this.addRedCircle()
         },
+        // 展示页面下一张
         nextPageHandler() {
             let { currIndex, currType, illDesList } = this
             if (illDesList[currType].length - 1 > currIndex) {
+                // 下一张
                 this.currIndex++
-                this.changeCarame()
+                this.changeCarame() // 改相机位置
             } else {
-                this.isMasterPage = false
-                this.currIndex = 0
+                // 跳转到主页 初始化显示
+                this.isMasterPage = false;
+                this.sprite.material.visible = false; // 主页面隐藏红点
+                this.currIndex = 0;
                 this.camera.position.set(0, 20, 20);
-                console.log('this.sprite2', this.sprite2);
-                
-                        this.sprite2 ? this.sprite2.remove() : null
-
+                this.sprite2 ? this.scene.remove(this.sprite2) : null
                 if (this.persent === 100) {
-                    this.mtl.position.y = 0
+                    this.mtl.position.y = 0;
+                    this.mtl.position.x = 0;
                 }
             }
         },
+        // 在场景中显示红点
         async addRedCircle() {
             let { currIndex, currType, illDesList } = this
-            if(!this.sprite) {
-                this.initSun();
-            }
-
+            this.sprite ? null : this.initSun();
             let sprite = this.sprite
             switch (currType) {
                 case 'fsmyk':
@@ -219,9 +216,9 @@ export default {
                     } else if (currIndex === 3) {
                         this.mtl.position.y = -0.4;
                         this.mtl.position.x = -0.1;
-                        sprite.position.set(0.38, 2.9, -0.1);
+                        sprite.position.set(0.38, 2.5, -0.1);
                         let sprite2 = this.sprite2 = sprite.clone()
-                        sprite.position.set(0.7, 1.9, -0.1);
+                        sprite.position.set(0.7, 1.5, -0.1);
                         this.scene.add(sprite2)
                         sprite.material.visible = true
                     } else {

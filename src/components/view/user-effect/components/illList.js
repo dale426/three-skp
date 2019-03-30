@@ -71,7 +71,7 @@ export const illDesList = {
     }, {
         title: '系膜增生型IgA肾病',
         position: '肾脏',
-        carame: [0, 12, 12],
+        carame: [0, 16, 16],
         description: []
     }],
     pfk: [{
