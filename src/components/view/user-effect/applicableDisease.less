@@ -1,0 +1,115 @@
+.applicable-disease {
+  width: 100%;
+  background: url("../../../assets/advance-002.png") center no-repeat;
+  background-size: cover;
+  color: #5defe0;
+  .advance-content {
+      overflow-y: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 0 30px;
+      justify-content: space-between;
+      height: 100%;
+  }
+  .wrap-disease-body {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
+  }
+  .departments-list-item {
+      height: 18px;
+      line-height: 18px;
+      font-size: 16px;
+      padding: 4px 0 4px 20px;
+      width: 100px;
+      text-align: left;
+      margin-top: 6px;
+      box-sizing: content-box;
+  }
+  .departments-list-item.active {
+      border: 1px solid #5defe0;
+  }
+  .humen-body {
+      position: relative;
+      width: 260px;
+      height: 510px;
+      z-index: 11;
+      .persent {
+          text-align: center;
+          color: #5defe0;
+          margin-top: 99%;
+      }
+      .human__gif {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+      }
+  }
+  .wrap-circle {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+  }
+  .menu {
+      padding-bottom: 60px;
+      margin-left: -30px;
+      width: 100%;
+  }
+  .select-departs-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      .triganle {
+          margin-left: 2px;
+          transform: rotate(180deg);
+      }
+  }
+
+  .ill-descrip {
+      margin-top: 180px;
+      position: relative;
+      z-index: 12;
+      width: calc(~"100vw - 30px");
+      margin-left: calc(~"300px - 100vw");
+      .sickness {
+          text-align: left;
+          & > p {
+              font-size: 16px;
+              font-weight: bold;
+          }
+          .sickness__description {
+              margin-top: 30px;
+              font-size: 15px;
+              font-weight: 600;
+              p:first-child {
+                  margin-top: 6px;
+              }
+              p {
+                  background: rgba(5, 13, 48, 0.5);
+                  padding: 2px;
+                  font-size: 14px;
+                  font-weight: 100;
+              }
+          }
+      }
+  }
+
+  .masker {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #041525;
+      opacity: 0.9;
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      padding-bottom: 40px;
+  }
+
+  a {
+      color: #e62f4d;
+  }
+}

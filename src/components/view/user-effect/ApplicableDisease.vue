@@ -23,12 +23,18 @@
                 <div class="humen-body">
                     <!-- 风湿免疫科 -->
                     <div v-if="persent !== 100" class="persent">加载中 - {{persent}}%</div>
-                    <div class="wrap-circle fsmyk" id="girl-3d">
-                        <!-- <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
-                                <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">
-                        <img class="red-circle" src=".././../../assets/red-circle.png" alt="" style="opacity: 0.8">-->
+                    <!-- 模型 -->
+                    <div v-show="isMasterPage" class="wrap-circle" id="girl-3d"></div>
+                    <!-- gif图片 -->
+                    <div v-if="!isMasterPage" class="wrap-circle">
+                        <img
+                            class="human__gif"
+                            :src="require(`@/assets/gifList/${modeImgName}`)"
+                            alt="请刷新页面"
+                        >
                     </div>
-                    <div class="ill-descrip" v-if="isMasterPage">
+                    <!-- 指南描述 -->
+                    <div class="ill-descrip" v-if="!isMasterPage">
                         <section class="sickness">
                             <p>{{ illDesList[currType][currIndex].title }}</p>
                             <div class="sickness__description">
@@ -47,17 +53,17 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="menu">
-            <Menu></Menu>
-        </div>
-        <div v-if="isMasterPage" class="masker">
-            <div>
-                <svg width="36" height="36" @click="nextPageHandler">
-                    <circle cx="18" cy="18" r="16" stroke="#5defe0" stroke-width="2" fill="none"></circle>
-                    <polyline points="14 10 26 18 14 26" stroke="#5defe0" stroke-width="2"></polyline>
-                </svg>
+            <div class="menu">
+                <Menu></Menu>
             </div>
+        </div>
+
+        <!-- 蒙层 -->
+        <div v-if="!isMasterPage" class="masker">
+            <svg width="36" height="36" @click="nextPageHandler">
+                <circle cx="18" cy="18" r="16" stroke="#5defe0" stroke-width="2" fill="none"></circle>
+                <polyline points="14 10 26 18 14 26" stroke="#5defe0" stroke-width="2"></polyline>
+            </svg>
         </div>
     </div>
 </template>
@@ -87,8 +93,9 @@ export default {
             sprite2: null,
             persent: 0,
             mtl: null,
-            isMasterPage: false,
+            isMasterPage: true,
             illDesList,
+            modeImgName: 'fs-01.gif',
             currIndex: 0,
             currType: null,
             simpleBody,
@@ -140,19 +147,9 @@ export default {
             if (this.persent !== 100) {
                 return;
             }
-            this.isMasterPage = true
+            this.isMasterPage = false
             this.currType = item.id
             this.currIndex = 0
-            this.changeCarame()
-        },
-        // 设置相机位置
-        changeCarame() {
-            let arr = illDesList[this.currType][this.currIndex].carame
-            this.camera.position.set(arr[0], arr[1], arr[2]);
-                if (this.persent === 100) {
-                    this.mtl.position.y = 0
-                }
-            this.addRedCircle()
         },
         // 展示页面下一张
         nextPageHandler() {
@@ -160,80 +157,15 @@ export default {
             if (illDesList[currType].length - 1 > currIndex) {
                 // 下一张
                 this.currIndex++
-                this.changeCarame() // 改相机位置
             } else {
                 // 跳转到主页 初始化显示
-                this.isMasterPage = false;
-                this.sprite.material.visible = false; // 主页面隐藏红点
+                this.isMasterPage = true;
                 this.currIndex = 0;
-                this.camera.position.set(0, 20, 20);
-                this.sprite2 ? this.scene.remove(this.sprite2) : null
-                if (this.persent === 100) {
-                    this.mtl.position.y = 0;
-                    this.mtl.position.x = 0;
-                }
             }
         },
         // 在场景中显示红点
         async addRedCircle() {
             let { currIndex, currType, illDesList } = this
-            this.sprite ? null : this.initSun();
-            let sprite = this.sprite
-            switch (currType) {
-                case 'fsmyk':
-                    if (currIndex === 1) {
-                        sprite.material.visible = true
-                        sprite.position.set(-0.18, 2.36, 0.2)
-                    } else if (currIndex === 2) {
-                        this.mtl.position.y = -0.5
-                        sprite.position.set(-0.18, 2.5, 0.26)
-                    } else {
-                        sprite.material.visible = false
-                    };
-
-                    break;
-                case 'xhk':
-                        sprite.material.visible = true
-                        sprite.position.set(-0.16, 2.6, 0.2);
-                    break;
-                case 'xyk':
-                if(currIndex === 1) {
-                    sprite.material.visible = true
-                    sprite.position.set(0, 2.7, -0.25);
-                } else {
-                    sprite.material.visible = false
-                };
-                    break;
-                case 'sjnk':
-                    if (currIndex === 0) {
-                        sprite.material.visible = true
-                        this.mtl.position.y = -1;
-                        sprite.position.set(-0.11, 2.7, 0.12);
-                    } else if (currIndex === 2) {
-                        sprite.material.visible = true
-                        this.mtl.position.y = -1.4;
-                        sprite.position.set(-0.05, 2.4, 0.14);
-                    } else if (currIndex === 3) {
-                        this.mtl.position.y = -0.4;
-                        this.mtl.position.x = -0.1;
-                        sprite.position.set(0.38, 2.5, -0.1);
-                        let sprite2 = this.sprite2 = sprite.clone()
-                        sprite.position.set(0.7, 1.5, -0.1);
-                        this.scene.add(sprite2)
-                        sprite.material.visible = true
-                    } else {
-                        sprite.material.visible = false
-                    }
-                    break;
-                case 'snk':
-                        sprite.material.visible = true
-                        sprite.position.set(-0.18, 2.3, 0.2);
-                    break;
-                case 'pfk':
-                        sprite.material.visible = false
-                    break;
-
-            }
 
         },
         // 初始化three.js
@@ -366,170 +298,8 @@ export default {
             this.renderer.render(this.scene, this.camera);
         }
     },
-    watch: {
-        $route: {
-            handler: function (val, oldVal) {
-                console.log(val);
-                if (val.name === 'applicable-disease') {
-                    this.isMasterPage = true
-                } else {
-                    this.isMasterPage = false
-                }
-            },
-            // 深度观察监听
-            deep: true
-        }
-    }
 }
 </script>
 <style lang="less">
-.applicable-disease {
-    width: 100%;
-    background: url("../../../assets/advance-002.png") center no-repeat;
-    background-size: cover;
-    color: #5defe0;
-    .advance-content {
-        overflow-y: hidden;
-        display: flex;
-        flex-direction: column;
-        padding: 0 30px 90px;
-        justify-content: space-between;
-        height: 100%;
-    }
-    .wrap-disease-body {
-        display: flex;
-        flex-grow: 1;
-        align-items: center;
-        justify-content: center;
-    }
-    .departments-list-item {
-        height: 18px;
-        line-height: 18px;
-        font-size: 16px;
-        padding: 4px 0 4px 20px;
-        width: 100px;
-        text-align: left;
-        margin-top: 6px;
-        box-sizing: content-box;
-    }
-    .departments-list-item.active {
-        border: 1px solid #5defe0;
-    }
-    .humen-body {
-        position: relative;
-        width: 260px;
-        height: 510px;
-        z-index: 11;
-        .persent {
-            text-align: center;
-            color: #5defe0;
-            margin-top: 99%;
-        }
-        // .fsmyk {
-        //     .red-circle:nth-child(1) {
-        //         top: 136px;
-        //         left: 76px;
-        //     }
-        //     .red-circle:nth-child(2) {
-        //         top: 214px;
-        //         left: 114px;
-        //     }
-        //     .red-circle:nth-child(3) {
-        //         top: 290px;
-        //         left: 70px;
-        //     }
-        // }
-    }
-    .wrap-circle {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        .red-circle {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            animation: redGlint 1.5s infinite;
-            animation-direction: alternate;
-        }
-        @keyframes redGlint {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 0.8;
-            }
-        }
-    }
-    .menu {
-        position: absolute;
-        bottom: 60px;
-        display: block;
-        width: 100%;
-    }
-    .select-departs-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 15px;
-        .triganle {
-            margin-left: 2px;
-            transform: rotate(180deg);
-        }
-    }
-    .detail-components-wrap {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-    .office-menu-opacity {
-        opacity: 0.1;
-    }
-
-    .ill-descrip {
-        margin-top: 180px;
-        position: relative;
-        z-index: 12;
-        width: calc(~"100vw - 30px");
-        margin-left: calc(~"300px - 100vw");
-        .sickness {
-            text-align: left;
-            & > p {
-                font-size: 16px;
-                font-weight: bold;
-            }
-            .sickness__description {
-                margin-top: 30px;
-                font-size: 15px;
-                font-weight: 600;
-                p:first-child {
-                    margin-top: 6px;
-                }
-                p {
-                    background: rgba(5, 13, 48, 0.5);
-                    padding: 2px;
-                    font-size: 14px;
-                    font-weight: 100;
-                }
-            }
-        }
-    }
-
-    .masker {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #041525;
-        opacity: 0.9;
-        display: flex;
-        flex-direction: column-reverse;
-        padding-bottom: 40px;
-    }
-
-    a {
-        color: #e62f4d;
-    }
-}
+@import "./applicableDisease.less";
 </style>
